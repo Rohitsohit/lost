@@ -1,6 +1,8 @@
 import Card from "./Card";
+import CardDetails from "./CardDetails";
 
 export default function Home() {
+    
     return (
         <>
             <div class="flex h-screen bg-gray-100">
@@ -69,8 +71,8 @@ export default function Home() {
 
                    
 
-                    <Card></Card>
-        
+                    {/* <Card></Card> */}
+                    <CardDetails  ></CardDetails>
                 </div>
 
             </div>
