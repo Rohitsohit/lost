@@ -18,7 +18,7 @@ export default function ImageCarousel({ slides }) {
   };
 
   return (
-    <div className="overflow-hidden relative">
+    <div className="overflow-hidden relative py-10 md:py-28">
       <div
         className={`flex transition ease-out duration-40`}
         style={{
@@ -26,11 +26,18 @@ export default function ImageCarousel({ slides }) {
         }}
       >
         {slides.map((s, index) => {
-          return <img className="min-h-screen" key={index} src={s} style={{ height: '100%', width: 'auto' }} alt={`slide-${index}`} />;
+          return (
+            <img
+              key={index}
+              src={s}
+              className="object-cover w-full h-full"
+              alt={`slide-${index}`}
+            />
+          );
         })}
       </div>
 
-      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
+      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-5 md:px-10 text-3xl">
         <button onClick={previousSlide}>
           <BsFillArrowLeftCircleFill />
         </button>
@@ -39,7 +46,7 @@ export default function ImageCarousel({ slides }) {
         </button>
       </div>
 
-      <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full">
+      <div className="absolute bottom-0 py-2 md:py-4 flex justify-center gap-3 w-full">
         {slides.map((s, i) => {
           return (
             <div
@@ -47,7 +54,7 @@ export default function ImageCarousel({ slides }) {
                 setCurrent(i);
               }}
               key={"circle" + i}
-              className={`rounded-full w-5 h-5 cursor-pointer  ${
+              className={`rounded-full w-3 h-3 md:w-5 md:h-5 cursor-pointer  ${
                 i === current ? "bg-white" : "bg-gray-500"
               }`}
             ></div>

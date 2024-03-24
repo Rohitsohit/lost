@@ -1,6 +1,5 @@
 
 import './App.css';
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from './components/Home';
 import Chatbox from './components/Chatbox';
 import AddItem from './components/AddItem';
@@ -10,10 +9,8 @@ function App() {
   return (
     
     < >
-    
-    <Router>
-      
-
+<Home></Home>
+    {/* <Router>
       <Routes>
       <Route path="/" exact element={<Home/> } />
       </Routes>
@@ -26,17 +23,10 @@ function App() {
       <Routes>
       <Route path="/mapsearch" exact element={<SearchMap/> } />
       </Routes>
-
       <Routes>
       <Route path="/message" exact element={<Chatbox/> } />
       </Routes>
- 
-  </Router>
-
-
-
-
-
+  </Router> */}
     </>
   );
 }

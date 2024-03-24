@@ -1,5 +1,7 @@
+import AddItem from "./AddItem";
 import Card from "./Card";
 import CardDetails from "./CardDetails";
+import Chatbox from "./Chatbox";
 
 export default function Home() {
     
@@ -72,7 +74,9 @@ export default function Home() {
                    
 
                     {/* <Card></Card> */}
-                    <CardDetails  ></CardDetails>
+                    {/* <CardDetails  ></CardDetails> */}
+                    {/* <Chatbox></Chatbox> */}
+                    <AddItem></AddItem>
                 </div>
 
             </div>
