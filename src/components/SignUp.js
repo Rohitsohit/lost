@@ -20,7 +20,7 @@ const SignUp = () => {
     };
 
     return (
-        <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
+        <main className="mx-auto  flex min-h-screen w-full items-center justify-center bg-gray-900 text-white"> {/* Added mt-20 for spacing */}
             <section className="flex w-[30rem] flex-col space-y-6">
                 <div className="text-center text-4xl font-medium" id="formTitle">
                     {isLogin ? 'Sign In' : 'Sign Up'}

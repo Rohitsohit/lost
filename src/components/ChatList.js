@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UserList from './UserList';
+
 
 function ChatList() {
   const [users, setUsers] = useState([
@@ -11,7 +11,7 @@ function ChatList() {
   ]);
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto">
       <h1 className="text-3xl font-semibold mb-6">User Chat History</h1>
       
       {/* List */}
@@ -28,7 +28,6 @@ function ChatList() {
         ))}
       </ul>
     </div>
-
 
 
     </div>
