@@ -5,7 +5,7 @@ import Card from "./Card";
 import CardDetails from "./CardDetails";
 import ChatList from "./ChatList";
 import Chatbox from "./Chatbox";
-import SignUp from "./SignUp";
+import Auth from "./Auth";
 import SearchMap from './SearchMap';
 
 export default function Home() {
@@ -93,7 +93,7 @@ export default function Home() {
                                         )}
                                     </div>
 
-                                    <Link to="/signup" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                                    <Link to="/auth" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                                         Sign In
                                     </Link>
 
@@ -107,7 +107,7 @@ export default function Home() {
                     <div className="p-4">
                         <Routes>
                             <Route path="/" exact element={<Card />} />
-                            <Route path="/signup" exact element={<SignUp />} />
+                            <Route path="/auth" exact element={<Auth />} />
                             <Route path="/card-details" element={<CardDetails />} />
                             <Route path="/add-item" element={<AddItem />} />
                             <Route path="/chatbox" element={<Chatbox />} />
