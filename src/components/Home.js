@@ -1,6 +1,7 @@
 import AddItem from "./AddItem";
 import Card from "./Card";
 import CardDetails from "./CardDetails";
+import ChatList from "./ChatList";
 import Chatbox from "./Chatbox";
 import SignUp from "./SignUp"
 export default function Home() {
@@ -70,8 +71,8 @@ export default function Home() {
 
                     {/* listing down her  */}
 
-                   
-                    <SignUp></SignUp>
+                    <ChatList/>
+                    {/* <SignUp></SignUp> */}
                     {/* <Card></Card> */}
                     {/* <CardDetails  ></CardDetails> */}
                     {/* <Chatbox></Chatbox> */}
