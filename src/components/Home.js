@@ -2,13 +2,12 @@ import AddItem from "./AddItem";
 import Card from "./Card";
 import CardDetails from "./CardDetails";
 import Chatbox from "./Chatbox";
-
+import SignUp from "./SignUp"
 export default function Home() {
     
     return (
         <>
             <div class="flex h-screen bg-gray-100">
-
 
                 <div class="md:flex flex-col w-64 bg-gray-800">
                     <div class="flex items-center justify-center h-16 bg-gray-900">
@@ -72,11 +71,11 @@ export default function Home() {
                     {/* listing down her  */}
 
                    
-
+                    <SignUp></SignUp>
                     {/* <Card></Card> */}
                     {/* <CardDetails  ></CardDetails> */}
                     {/* <Chatbox></Chatbox> */}
-                    <AddItem></AddItem>
+                    {/* <AddItem></AddItem> */}
                 </div>
 
             </div>
