@@ -4,7 +4,9 @@ import jwt from "jsonwebtoken";
 import lostUserSchema from "../models/user.js";
 
 export const signin = async (req, res) => {
+  console.log(req.body);
   const { email, password } = req.body;
+  
 
   try {
     const existingUser = await lostUserSchema.findOne({ email });
@@ -36,7 +38,7 @@ export const signin = async (req, res) => {
 export const signup = async (req, res) => {
 
   const { email, password, confirmPassword, name } = req.body;
-  
+
   try {
     const existingUser = await lostUserSchema.findOne({ email });
     if (existingUser)

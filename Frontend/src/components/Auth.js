@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signin, signup } from '../actions/auth';
 const Auth = () => {
     const [isLogin, setIsLogin] = useState(true);
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [fullName, setFullName] = useState('');
+    const [name, setName] = useState('');
+
+    const dispatch = useDispatch();
+    const history = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (isLogin) {
             // Handle login
-            console.log('Logging in with:', { username, password });
+           // console.log('Logging in with:', { email, password });
+            dispatch(signin({email,password}));
         } else {
             // Handle signup
-            console.log('Signing up with:', { username, password, confirmPassword, fullName });
+            //console.log('Signing up with:', { email, password, confirmPassword, fullName });
+            dispatch(signup({ email, password, confirmPassword, name }));
         }
     };
 
@@ -31,8 +38,8 @@ const Auth = () => {
                         type="text"
                         placeholder="Email or Username"
                         className="w-full border-none bg-transparent outline-none placeholder-italic focus:outline-none"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -64,8 +71,8 @@ const Auth = () => {
                             type="text"
                             placeholder="Full Name"
                             className="w-full border-none bg-transparent outline-none placeholder-italic focus:outline-none"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                 )}
