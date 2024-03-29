@@ -64,7 +64,7 @@ export default function Home() {
                 <div className="flex flex-col flex-1 overflow-y-auto">
                     <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
                         <div className="flex items-center px-4">
-                            <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" placeholder="Search your item here. "/>
+                            <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" placeholder="Search your item here. " />
                         </div>
                         <div className="flex items-center pr-4">
                             {isUser ? (
@@ -73,12 +73,11 @@ export default function Home() {
                                 </span>
                             ) : (
                                 <div className="flex items-center space-x-4">
-                                    <Link to="/signup" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
-                                        Sign In
-                                    </Link>
+
                                     <Link to="/messages" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                                         Messages
                                     </Link>
+
                                     <div className="relative">
                                         <button onClick={toggleNotifications} className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                                             Notifications
@@ -93,6 +92,12 @@ export default function Home() {
                                             </div>
                                         )}
                                     </div>
+
+                                    <Link to="/signup" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                                        Sign In
+                                    </Link>
+
+                                    
                                 </div>
                             )}
                         </div>
