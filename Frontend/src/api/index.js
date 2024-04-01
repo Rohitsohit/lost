@@ -14,3 +14,5 @@ const API = axios.create({baseURL:'http://localhost:5001'})
 export const signIn =(formData)=>API.get('/user/signin',formData);
 export const signUp =(formData) => API.post('/user/signup',formData)
 
+export const getItems =() => API.get('/lost-items')
+export const addItems =(formData)=>API.post('/lost-items/add-item',formData);
