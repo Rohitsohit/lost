@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 import { useDispatch } from "react-redux";
 import {addItems} from "../actions/items"
+import { useNavigate } from "react-router-dom";
 const itemsData = {
     category: "",
     details: "",
@@ -12,7 +13,7 @@ export default function AddItem() {
 
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(itemsData);
-    
+    const history = useNavigate();
     let slides = [
         "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
         "https://wallpapercave.com/wp/wp3386769.jpg",
@@ -26,7 +27,7 @@ export default function AddItem() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        dispatch(addItems(formData));
+        dispatch(addItems(formData,history));
     };
 
     return (

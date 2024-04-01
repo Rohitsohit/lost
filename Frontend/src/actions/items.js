@@ -1,19 +1,18 @@
 import * as api from "../api";
-import { AUTH } from "../constants/actionTypes";
+import { FETCH_ALL } from "../constants/actionTypes";
 
-export const getItems = () => async () => {
+export const getItems = () => async (dispatch) => {
   try {
     const data=await api.getItems();
-    console.log(data.data);
+    dispatch({ type: FETCH_ALL, payload: data.data });
   } catch (error) {
     console.log(error);
   }
 };
-export const addItems = (formData) => async () => {
+export const addItems = (formData,history) => async () => {
   try {
-    console.log(formData)
     await api.addItems(formData);
-    
+    history('/');
   } catch (error) {
     console.log(error);
   }

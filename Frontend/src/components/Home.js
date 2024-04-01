@@ -8,7 +8,12 @@ import Chatbox from "./Chatbox";
 import Auth from "./Auth";
 import SearchMap from './SearchMap';
 
+
 export default function Home() {
+
+
+
+
 
     const [isUser, setIsUser] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
@@ -106,9 +111,9 @@ export default function Home() {
                     {/* Content Area */}
                     <div className="p-4">
                         <Routes>
-                            <Route path="/" exact element={<Card />} />
+                            <Route path="/" exact element={<Card  />} />
                             <Route path="/auth" exact element={<Auth />} />
-                            <Route path="/card-details" element={<CardDetails />} />
+                            <Route path="/details/:id" element={<CardDetails />} />
                             <Route path="/add-item" element={<AddItem />} />
                             <Route path="/chatbox" element={<Chatbox />} />
                             <Route path="/search-by-map" element={<SearchMap />} />
