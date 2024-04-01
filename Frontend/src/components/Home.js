@@ -10,12 +10,8 @@ import SearchMap from './SearchMap';
 
 
 export default function Home() {
-
-
-
-
-
     const [isUser, setIsUser] = useState(false);
+    const [searchKey, setSearchKey] = useState();
     const [showNotifications, setShowNotifications] = useState(false);
     const [notifications, setNotifications] = useState([
         { id: 1, message: 'New message 1' },
@@ -26,6 +22,10 @@ export default function Home() {
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
     };
+   const  handeSearch = (e)=>{
+            e.preventDefault();
+            setSearchKey(e.target.value.toLowerCase())
+    }
 
     return (
         <Router>
@@ -69,7 +69,7 @@ export default function Home() {
                 <div className="flex flex-col flex-1 overflow-y-auto">
                     <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
                         <div className="flex items-center px-4">
-                            <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" placeholder="Search your item here. " />
+                            <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" onChange={handeSearch} placeholder="Search your item here. " />
                         </div>
                         <div className="flex items-center pr-4">
                             {isUser ? (
@@ -111,7 +111,7 @@ export default function Home() {
                     {/* Content Area */}
                     <div className="p-4">
                         <Routes>
-                            <Route path="/" exact element={<Card  />} />
+                            <Route path="/" exact element={<Card searchKey={searchKey}  />} />
                             <Route path="/auth" exact element={<Auth />} />
                             <Route path="/details/:id" element={<CardDetails />} />
                             <Route path="/add-item" element={<AddItem />} />

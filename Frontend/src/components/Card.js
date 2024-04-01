@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-export default function Card() {
+export default function Card({searchKey}) {
     const [items, setItems] = useState();
     const history = useNavigate();
     const data = useSelector((state) => state.items);
@@ -12,7 +12,14 @@ export default function Card() {
     const handleClick =(item)=>{
         history(`/details/${item._id}`);
     }
-
+    if(items){
+        const filterItems = items.filter((item)=>{
+                item.category.toLowerCase().includes(searchKey) ||
+                item.location.toLowerCase().includes(searchKey)
+            })
+    console.log(filterItems)
+    }
+  
 
   return !items?(<>Loading...</>):(
     <>
