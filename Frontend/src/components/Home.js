@@ -7,7 +7,8 @@ import ChatList from "./ChatList";
 import Chatbox from "./Chatbox";
 import Auth from "./Auth";
 import SearchMap from './SearchMap';
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
     const [isUser, setIsUser] = useState(false);
@@ -27,6 +28,9 @@ export default function Home() {
             setSearchKey(e.target.value.toLowerCase())
     }
 
+    const handleLogOut = (e) =>{
+            
+    }
     return (
         <Router>
             <div className="flex min-h-screen bg-gray-100">
@@ -73,9 +77,9 @@ export default function Home() {
                         </div>
                         <div className="flex items-center pr-4">
                             {isUser ? (
-                                <span className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
-                                    Hi, User
-                                </span>
+                                <button onClick={handleLogOut} className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                                    Logout. 
+                                </button>
                             ) : (
                                 <div className="flex items-center space-x-4">
 

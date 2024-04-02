@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import lostUserSchema from "../models/user.js";
 
 export const signin = async (req, res) => {
-  console.log(req.body);
+
   const { email, password } = req.body;
   
 

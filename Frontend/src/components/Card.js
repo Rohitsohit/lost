@@ -12,14 +12,9 @@ export default function Card({searchKey}) {
     const handleClick =(item)=>{
         history(`/details/${item._id}`);
     }
-    if(items){
-        const filterItems = items.filter((item)=>{
-                item.category.toLowerCase().includes(searchKey) ||
-                item.location.toLowerCase().includes(searchKey)
-            })
-    console.log(filterItems)
-    }
   
+
+    
 
   return !items?(<>Loading...</>):(
     <>
