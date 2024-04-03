@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState,useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AddItem from "./AddItem";
 import Card from "./Card";
@@ -11,7 +11,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-    const [isUser, setIsUser] = useState(false);
+
+    const history  = useNavigate();
+    const [isUser, setIsUser] = useState(JSON.parse(localStorage.getItem("profile-LostAndFoud")));
+    const dispatch = useDispatch();
+    
     const [searchKey, setSearchKey] = useState();
     const [showNotifications, setShowNotifications] = useState(false);
     const [notifications, setNotifications] = useState([
@@ -28,8 +32,15 @@ export default function Home() {
             setSearchKey(e.target.value.toLowerCase())
     }
 
+    useEffect(() => {
+        setIsUser(JSON.parse(localStorage.getItem("profile-LostAndFound")));
+      }, [history]);
+
     const handleLogOut = (e) =>{
-            
+        e.preventDefault();
+        dispatch({ type: "LOGOUT" });
+        history("/");
+        setIsUser(null);
     }
     return (
         <Router>
@@ -114,7 +125,7 @@ export default function Home() {
 
                     {/* Content Area */}
                     <div className="p-4">
-                        <Routes>
+                    <Routes>
                             <Route path="/" exact element={<Card searchKey={searchKey}  />} />
                             <Route path="/auth" exact element={<Auth />} />
                             <Route path="/details/:id" element={<CardDetails />} />

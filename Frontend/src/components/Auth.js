@@ -18,11 +18,11 @@ const Auth = () => {
         if (isLogin) {
             // Handle login
            // console.log('Logging in with:', { email, password });
-            dispatch(signin({email,password}));
+            dispatch(signin({email,password},history));
         } else {
             // Handle signup
             //console.log('Signing up with:', { email, password, confirmPassword, fullName });
-            dispatch(signup({ email, password, confirmPassword, name }));
+            dispatch(signup({ email, password, confirmPassword, name },history));
         }
     };
 
