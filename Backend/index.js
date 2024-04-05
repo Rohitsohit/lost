@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import user from "./routes/user.js";
 import item from './routes/item.js'
+import multer from "multer";
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));

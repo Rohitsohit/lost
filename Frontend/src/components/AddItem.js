@@ -3,10 +3,12 @@ import ImageCarousel from './ImageCarousel';
 import { useDispatch } from "react-redux";
 import {addItems} from "../actions/items"
 import { useNavigate } from "react-router-dom";
+import ImageDesign from './ImageDesign';
 const itemsData = {
     category: "",
     details: "",
-    location: ""
+    location: "",
+    images:[]
 };
 
 export default function AddItem() {
@@ -14,12 +16,7 @@ export default function AddItem() {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(itemsData);
     const history = useNavigate();
-    let slides = [
-        "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
-        "https://wallpapercave.com/wp/wp3386769.jpg",
-        "https://wallpaperaccess.com/full/809523.jpg",
-        "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
-    ];
+    const [slides, setSlides] = useState([]);
 
     const onChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,9 +24,34 @@ export default function AddItem() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(formData)
         dispatch(addItems(formData,history));
     };
 
+    const imageHandle = async (e) => {
+        const data = new FileReader();
+    
+        data.addEventListener("load", () => {
+          setFormData({
+            ...formData,
+            images: [...formData.images, data.result], // append new image URL to the array
+          });
+          setSlides((prevSlides) => [...prevSlides, data.result]); // append new image URL to the slides array
+        });
+    
+        data.readAsDataURL(e.target.files[0]);
+      };
+    
+      const handleImageClose = (indexToRemove) =>{
+        setSlides((prevSlides) => prevSlides.filter((_, index) => index !== indexToRemove));
+        setFormData({
+          ...formData,
+          images: formData.images.filter((_, index) => index !== indexToRemove),
+        });
+      };
+        
+      
+    
     return (
         <>
             <div className="flex items-center justify-center">
@@ -83,7 +105,7 @@ export default function AddItem() {
                             </label>
 
                             <div className="mb-8">
-                                <input type="file" name="file" id="file" className="sr-only" />
+                                <input type="file" onChange={imageHandle} name="file" id="file" className="sr-only" />
                                 <label
                                     htmlFor="file"
                                     className="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
@@ -108,7 +130,35 @@ export default function AddItem() {
                             Submit
                         </button>
                     </form>
-                    <ImageCarousel slides={slides}></ImageCarousel>
+                    {/* <ImageCarousel slides={slides}></ImageCarousel> */}
+                    <div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
+  <div class="-m-1 flex flex-wrap md:-m-2">
+
+
+  {slides.map((image,index) => (
+           <div class="flex w-1/3 flex-wrap relative">
+           <div class="w-full p-1 md:p-2">
+               <img
+                   alt="gallery"
+                   class="block h-full w-full rounded-lg object-cover object-center"
+                   src={image}/>
+               <button class="absolute top-0 right-0 m-2 bg-white p-2 rounded-full shadow-lg z-10" onClick={()=>handleImageClose(index)}>
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                   </svg>
+               </button>
+           </div>
+       </div>
+      ))}
+
+
+
+      
+
+  </div>
+</div>
+                    
+
                 </div>
             </div>
         </>

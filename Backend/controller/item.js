@@ -1,5 +1,5 @@
 import itemSchema from "../models/item.js"
-
+import path from "path";
 export const storeItems = async (req, res) => {
    
     const items = req.body;
@@ -24,3 +24,6 @@ export const getItems = async (req, res) => {
       }
 
 }
+
+
+

@@ -60,7 +60,7 @@ export default function CardDetails() {
 
 
                     <div class="flex-1 bg-indigo-100 text-center">
-                        <ImageCarousel slides={slides} ></ImageCarousel>
+                        <ImageCarousel slides={item.images} ></ImageCarousel>
                     </div>
                 </div>
             </div>

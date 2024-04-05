@@ -6,7 +6,7 @@ const itemSchema = mongoose.Schema({
     location: { type: String, required: true },
     // user:{type:String},
     // email : {type: String}
-    // images: [{ type: String, required: true }]
+     images: [{ type: String}]
 });
 
 export default mongoose.model('LostItem', itemSchema);

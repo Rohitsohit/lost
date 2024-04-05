@@ -6,7 +6,7 @@ import lostUserSchema from "../models/user.js";
 export const signin = async (req, res) => {
 
   const { email, password } = req.body;
-  
+  console.log(req.body)
 
   try {
     const existingUser = await lostUserSchema.findOne({ email });
