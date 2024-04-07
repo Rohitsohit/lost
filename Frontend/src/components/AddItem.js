@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 import { useDispatch } from "react-redux";
 import {addItems} from "../actions/items"
@@ -51,6 +51,7 @@ export default function AddItem() {
       };
         
       
+    
     
     return (
         <>
@@ -112,7 +113,7 @@ export default function AddItem() {
                                 >
                                     <div>
                                         <span className="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
-                                            Browse
+                                           All Browse. 
                                         </span>
                                     </div>
                                 </label>

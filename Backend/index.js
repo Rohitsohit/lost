@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import user from "./routes/user.js";
 import item from './routes/item.js'
-import multer from "multer";
+import chatRoute from './routes/chatRoute.js'
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -14,6 +14,7 @@ app.use(cors());
 
 app.use("/user",user);
 app.use("/lost-items",item)
+app.use("/chats",chatRoute)
 
  const CONNECTION_URL ="mongodb+srv://Rohit:123@cluster0.xqoa6nc.mongodb.net/?retryWrites=true&w=majority";
 const PORT = 5001;

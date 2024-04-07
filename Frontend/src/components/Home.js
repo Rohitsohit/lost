@@ -9,6 +9,8 @@ import Auth from "./Auth";
 import SearchMap from './SearchMap';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getItems } from '../actions/items.js';
 
 export default function Home() {
 
@@ -34,9 +36,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        console.log()
         setIsUser(JSON.parse(localStorage.getItem("profile-LostAndFound")));
-
     }, [history]);
 
     const handleLogOut = (e) => {
@@ -45,6 +45,16 @@ export default function Home() {
         history("/");
         setIsUser(null);
     }
+
+    const [items, setItems] = useState();
+    const data = useSelector((state) => state.items);
+    useEffect(() => {
+    setItems(data); 
+    }, [data])
+
+    
+   
+
 
     return (
         <div className="flex min-h-screen bg-gray-100">

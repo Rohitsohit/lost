@@ -3,22 +3,14 @@ import ImageCarousel from './ImageCarousel'
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 export default function CardDetails() {
-    let slides = [
-        "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
-        "https://wallpapercave.com/wp/wp3386769.jpg",
-        "https://wallpaperaccess.com/full/809523.jpg",
-        "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
-      ];
 
-      const { id } = useParams();
+       const { id } = useParams();
        const items = useSelector((state) => state.items);
        const item = items.find((item) => item._id.toString() === id);
 
     return (
-      
-
+ 
         <>
-
             <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
                 <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
                     <div class="lg:w-1/2 xl:w-5/12 p-4 sm:p-12">
@@ -54,21 +46,11 @@ export default function CardDetails() {
                     </div>
                     {/* Images */}
 
-                    
-                        
-
-
-
                     <div class="flex-1 bg-indigo-100 text-center">
                         <ImageCarousel slides={item.images} ></ImageCarousel>
                     </div>
                 </div>
             </div>
-
-
         </>
-
-
-
     )
 }

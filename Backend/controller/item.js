@@ -25,5 +25,25 @@ export const getItems = async (req, res) => {
 
 }
 
+export const searchItems = async (req,res,next) => {
+    console.log(req.query)
+    try {
+        const { category, location } = req.query;
+        let query = {};
+    
+        if (category) {
+          query.category = category;
+        }
+    
+        if (location) {
+          query.location = location;
+        }
+    
+        const items = await itemSchema.find(query);
+        res.json(items);
+      } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+      }
+};
 
 

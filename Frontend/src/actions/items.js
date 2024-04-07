@@ -1,9 +1,11 @@
 import * as api from "../api";
 import { FETCH_ALL } from "../constants/actionTypes";
 
-export const getItems = () => async (dispatch) => {
+export const getItems = (params) => async (dispatch) => {
+    
   try {
-    const data=await api.getItems();
+    const data=await api.getItems(params);
+    console.log(data);
     dispatch({ type: FETCH_ALL, payload: data.data });
   } catch (error) {
     console.log(error);
