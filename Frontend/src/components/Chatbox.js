@@ -1,76 +1,159 @@
-import React from 'react'
-
+import React, { useState,useEffect } from 'react'
+import ChatList from './ChatList'
+import { useSelector, } from "react-redux";
+import { useDispatch } from "react-redux";
+import { userChats } from '../actions/chatActions';
 export default function Chatbox() {
+  const user = JSON.parse(localStorage.getItem("profile-LostAndFound"))
+  // const dispatch = useDispatch();
+ 
+
+
+  // useEffect(() => {
+  //     dispatch(userChats(user.data.result._id))
+  // }, [user])
+  
+  
+  
   return (
     <>
-    
 
-  <div class="size-9/12  flex flex-col border shadow-md bg-white">
-    <div class="flex items-center justify-between border-b p-2">
-  
-      <div class="flex items-center">
-        <img class="rounded-full w-10 h-10" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-        <div class="pl-2">
-          <div class="font-semibold">
-            <a class="hover:underline" href="#">John Doe</a>
-          </div>
-          <div class="text-xs text-gray-600">Online</div>
-        </div>
-      </div>
-  
-      
-     
-    </div>
+      <div class="flex h-screen antialiased text-gray-800">
+        <div class="flex flex-row h-full w-full overflow-x-hidden">
 
-    <div class="flex-1 px-4 py-4 overflow-y-auto">
-      
+          <ChatList logedInUser={user.data.result._id}/>
 
-      <div class="flex items-center mb-4">
-        <div class="flex-none flex flex-col items-center space-y-1 mr-4">
-          <img class="rounded-full w-10 h-10" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-          John Doe
-        </div>
-        <div class="flex-2  bg-indigo-400 text-white p-2 rounded-lg mb-2 relative">
-          <div> consectetur adipisicing elit.</div>
+          <div class="flex flex-col flex-auto h-full p-6">
+            <div
+              class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
+            >
+              <div class="flex flex-col h-full overflow-x-auto mb-4">
+                <div class="flex flex-col h-full">
+                  <div class="grid grid-cols-12 gap-y-2">
 
-    
-          <div class="absolute left-0 top-1/2 transform -translate-x-1/2 rotate-45 w-2 h-2 bg-indigo-400"></div>
-        
-        </div>
-      </div>
+                    {/* sender user */}
 
-    
+                    <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                      <div class="flex flex-row items-center">
+                        <div
+                          class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                        >
+                          A
+                        </div>
+                        <div
+                          class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
+                        >
+                          <div>Hey How are you today?</div>
+                        </div>
+                      </div>
+                    </div>
 
-      <div class="flex items-center flex-row-reverse mb-4">
-        <div class="flex-none flex flex-col items-center space-y-1 ml-4">
-          <img class="rounded-full w-10 h-10" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-          you
-        </div>
-        <div class="flex-2 bg-indigo-100 text-gray-800 p-2 rounded-lg mb-2 relative">
-          <div>adipisicing elitLorem ipsum dolor  </div>
-          <div class="absolute right-0 top-1/2 transform translate-x-1/2 rotate-45 w-2 h-2 bg-indigo-100"></div>
-        </div>
-      </div>
-    </div>
+                    {/* Loged in user */}
+                    <div class="col-start-6 col-end-13 p-3 rounded-lg">
+                      <div class="flex items-center justify-start flex-row-reverse">
+                        <div
+                          class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
+                        >
+                          A
+                        </div>
+                        <div
+                          class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+                        >
+                          <div>I'm ok what about you?</div>
+                        </div>
+                      </div>
+                    </div>
 
-    
 
-<div class="p-4 border-t flex">
-                <input id="user-input" type="text" placeholder="Type a message" class="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                <button id="send-button" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">Send</button>
+
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
+              >
+                <div>
+                  <button
+                    class="flex items-center justify-center text-gray-400 hover:text-gray-600"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <div class="flex-grow ml-4">
+                  <div class="relative w-full">
+                    <input
+                      type="text"
+                      class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                    />
+                    <button
+                      class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
+                    >
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <button
+                    class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                  >
+                    <span>Send</span>
+                    <span class="ml-2">
+                      <svg
+                        class="w-4 h-4 transform rotate-45 -mt-px"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                        ></path>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
 
 
-  </div>
 
 
 
 
 
-    
-    
-    
     </>
   )
 }

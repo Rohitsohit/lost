@@ -5,7 +5,6 @@ export const getItems = (params) => async (dispatch) => {
     
   try {
     const data=await api.getItems(params);
-    console.log(data);
     dispatch({ type: FETCH_ALL, payload: data.data });
   } catch (error) {
     console.log(error);

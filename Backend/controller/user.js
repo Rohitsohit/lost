@@ -64,3 +64,16 @@ export const signup = async (req, res) => {
     res.status(500).json({ message: "something went wrong." });
   }
 };
+
+export const getUser = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const userDetails = await lostUserSchema.findById(userId);  // Corrected method name
+    if (!userDetails) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(userDetails);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
