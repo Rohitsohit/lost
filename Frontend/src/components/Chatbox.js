@@ -7,13 +7,21 @@ export default function Chatbox() {
   const user = JSON.parse(localStorage.getItem("profile-LostAndFound"))
   // const dispatch = useDispatch();
  
-
-
-  // useEffect(() => {
-  //     dispatch(userChats(user.data.result._id))
-  // }, [user])
   
+
+  useEffect(() => {
+      getUser()
+  }, [user])
   
+  const getUser =async()=>{
+      try {
+       const chatList=await userChats(user.data.result._id)
+       console.log("my list")
+       console.log(chatList)
+      } catch (error) {
+        console.log(error)
+      }
+  }
   
   return (
     <>
