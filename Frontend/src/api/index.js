@@ -13,7 +13,7 @@ const API = axios.create({baseURL:'http://localhost:5001'})
 
 export const signIn =(formData)=>API.post('/user/signin',formData);
 export const signUp =(formData) => API.post('/user/signup',formData)
-
+export const getUserDetails=(id)=>API.get(`/user/${id}`);
 export const getItems =(params) => API.get(`/lost-items/search`,params)
 export const addItems =(formData)=>API.post('/lost-items/add-item',formData);
 

@@ -22,3 +22,13 @@ export const signup = (formData,history) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const getUserDetails = async (id) => {
+  try {
+    const data = await api.getUserDetails(id);
+    return data.data;
+   
+  } catch (error) {
+    console.log(error);
+  }
+};
