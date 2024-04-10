@@ -18,3 +18,4 @@ export const getItems =(params) => API.get(`/lost-items/search`,params)
 export const addItems =(formData)=>API.post('/lost-items/add-item',formData);
 
 export const userChats =(chatId)=>API.get(`/chat/${chatId}`);
+export const getMessages =(chatId)=>API.get(`/message/${chatId}`);

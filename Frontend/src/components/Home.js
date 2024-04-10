@@ -4,12 +4,13 @@ import AddItem from "./AddItem";
 import Card from "./Card";
 import CardDetails from "./CardDetails";
 import ChatList from "./ChatList";
-import Chatbox from "./Chatbox";
+
 import Auth from "./Auth";
 import SearchMap from './SearchMap';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ChatLayout from './ChatLayout';
 
 
 export default function Home() {
@@ -143,7 +144,7 @@ export default function Home() {
                             <Route path="/auth" exact element={<Auth />} />
                             <Route path="/details/:id" element={<CardDetails />} />
                             <Route path="/add-item" element={<AddItem />} />
-                            <Route path="/messages" element={<Chatbox />} />
+                            <Route path="/messages" element={<ChatLayout />} />
                             <Route path="/search-by-map" element={<SearchMap />} />
                             
                         </Routes>
