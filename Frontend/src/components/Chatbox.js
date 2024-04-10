@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { getMessages } from '../actions/chatActions';
 import { format } from "timeago.js";
+
 export default function Chatbox({ chat, loggedInUser }) {
 
-
   const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const data = await getMessages(chat._id);
-
         setMessages(data);
       } catch (error) {
         console.log(error);
@@ -19,8 +19,6 @@ export default function Chatbox({ chat, loggedInUser }) {
     if (chat !== null) fetchMessages();
   }, [chat]);
 
-
-
   return (
     <>
       <div className="flex flex-col flex-auto h-full p-6">
@@ -28,37 +26,20 @@ export default function Chatbox({ chat, loggedInUser }) {
           <div className="flex flex-col h-full overflow-x-auto mb-4">
             <div className="flex flex-col h-full">
               <div className="grid grid-cols-12 gap-y-2">
-
-                {
-                  messages.map((message) => {
-                    <div className="col-start-6 col-end-13 p-3 rounded-lg">
-                      <div className="flex items-center justify-start flex-row-reverse">
-                        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          A
-                        </div>
-                        <div className={`relative mr-3 text-sm ${message.senderId === loggedInUser ? 'bg-indigo-100' : 'bg-white'} py-2 px-4 shadow rounded-xl`}>
-                          <div>{message.text}</div>
-                          <div>{format(message.createdAt)}</div>
-                        </div>
-                      </div>
+                {messages.map((message, index) => (
+                  <div 
+                    key={index}
+                    className={`col-start-6 col-end-13 p-3 rounded-lg ${message.senderId === loggedInUser ? 'flex-row-reverse' : 'flex-row'}`}
+                  >
+                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                      A
                     </div>
-                  })
-
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <div className={`relative ml-3 text-sm ${message.senderId === loggedInUser ? 'bg-indigo-100' : 'bg-white'} py-2 px-4 shadow rounded-xl`}>
+                      <div>{message.text}</div>
+                      <div>{format(message.createdAt)}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -113,5 +94,5 @@ export default function Chatbox({ chat, loggedInUser }) {
         </div>
       </div>
     </>
-  )
+  );
 }
