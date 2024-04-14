@@ -6,24 +6,50 @@ import { io } from "socket.io-client";
 
 export default function ChatLayout() {
   const user = JSON.parse(localStorage.getItem("profile-LostAndFound"));
-  const [currentChatList, setCurrentChatList] = useState();
+  const [currentChatList, setCurrentChatList] = useState(null);
   const [chatList, setChatList] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [sendMessage, setSendMessage] = useState(null);
+  const [receivedMessage, setReceivedMessage] = useState(null);
   const socket = useRef();
 
+  //user in dependencies to get live chat
   useEffect(() => {
     socket.current =io('http://localhost:8800')
     socket.current.emit("new-user-add", user.data.result._id);
     socket.current.on('get-users',(users)=>{
       setOnlineUsers(users);
-      // console.log(onlineUsers)
+      
     })
   }, [])
   
 
   useEffect(() => {
     getChatList();
+  }, [user.data.result._id]);
+
+
+  // Send Message to socket server
+  useEffect(() => {
+    if (sendMessage!==null) {
+      socket.current.emit("send-message", sendMessage);}
+  }, [sendMessage]);
+
+
+  // Get the message from socket server
+  useEffect(() => {
+    socket.current.on("recieve-message", (data) => {
+      console.log(data)
+      setReceivedMessage(data);
+    }
+    );
   }, []);
+
+  const checkOnlineStatus = (chat) => {
+    const chatMember = chat.members.find((member) => member !== user.data.result._id);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
+  };
 
   const getChatList = async () => {
     try {
@@ -77,13 +103,14 @@ export default function ChatLayout() {
             {/* chatList */}
             {chatList && chatList.map((chat) => (
               <div onClick={()=>setCurrentChatList(chat)}>
-              <ChatList key={chat._id} data={chat} loggedInUser={user.data.result._id} />
+              <ChatList key={chat._id} data={chat} loggedInUser={user.data.result._id} online={checkOnlineStatus(chat)} />
               </div>
             ))}
           </div>
 
             {/* Chatbox */}
-          <Chatbox chat={currentChatList} loggedInUser={user.data.result._id}></Chatbox>
+          <Chatbox chat={currentChatList} loggedInUser={user.data.result._id} setSendMessage={setSendMessage}
+          receivedMessage={receivedMessage}></Chatbox>
         </div>
       </div>
     </>
