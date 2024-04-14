@@ -24,5 +24,16 @@ export const getMessages = async(chatId) => {
   }
 };
 
+export const addMessage = async(textData) => {
+  try {
+    
+    const res = await api.addMessage(textData);
+    
+    return res.data;
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 

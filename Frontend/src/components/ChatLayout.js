@@ -1,12 +1,24 @@
-import React, { useState, useEffect, useSyncExternalStore } from 'react';
+import React, { useState, useEffect, useSyncExternalStore, useRef } from 'react';
 import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
 import Chatbox from './ChatBox';
+import { io } from "socket.io-client";
 
 export default function ChatLayout() {
   const user = JSON.parse(localStorage.getItem("profile-LostAndFound"));
   const [currentChatList, setCurrentChatList] = useState();
   const [chatList, setChatList] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const socket = useRef();
+
+  useEffect(() => {
+    socket.current =io('http://localhost:8800')
+    socket.current.emit("new-user-add", user.data.result._id);
+    socket.current.on('get-users',(users)=>{
+      setOnlineUsers(users);
+      // console.log(onlineUsers)
+    })
+  }, [])
   
 
   useEffect(() => {

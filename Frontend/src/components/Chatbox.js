@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getMessages } from '../actions/chatActions';
+import { getMessages, addMessage } from '../actions/chatActions';
 import { format } from "timeago.js";
 
 export default function Chatbox({ chat, loggedInUser }) {
 
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -19,15 +20,45 @@ export default function Chatbox({ chat, loggedInUser }) {
     if (chat !== null) fetchMessages();
   }, [chat]);
 
-  return (
+  const handleChange = (e) => {
+    setNewMessage(e.target.value)
+  }
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    const textMessage = {
+      senderId: loggedInUser,
+      text: newMessage,
+      chatId: chat._id,
+    }
+
+    // const receiverId = chat.members.find((id)=>id!==loggedInUser);
+    // // send message to socket server
+    // setSendMessage({...message, receiverId})
+    // send message to database
+    try {
+      const { data } = await addMessage(textMessage);
+      setMessages([...messages, data]);
+      setNewMessage("");
+    }
+    catch {
+      console.log("error")
+    }
+  }
+
+  return  (
     <>
-      <div className="flex flex-col flex-auto h-full p-6">
+    {
+      chat ?(
+
+        <div className="flex flex-col flex-auto h-full p-6">
         <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
           <div className="flex flex-col h-full overflow-x-auto mb-4">
             <div className="flex flex-col h-full">
               <div className="grid grid-cols-12 gap-y-2">
                 {messages.map((message, index) => (
-                  <div 
+                  <div
                     key={index}
                     className={`col-start-6 col-end-13 p-3 rounded-lg ${message.senderId === loggedInUser ? 'flex-row-reverse' : 'flex-row'}`}
                   >
@@ -66,12 +97,14 @@ export default function Chatbox({ chat, loggedInUser }) {
               <input
                 type="text"
                 placeholder="Type your message..."
+
+                onChange={handleChange}
                 className="w-full focus:outline-none border rounded-xl px-4 py-2"
               />
             </div>
             <div className="ml-4">
-              <button className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-2 flex-shrink-0">
-                <span>Send</span>
+              <button onClick={handleClick} className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-2 flex-shrink-0">
+                {/* <span>Send</span> */}
                 <span className="ml-2">
                   <svg
                     className="w-4 h-4 transform rotate-45 -mt-px"
@@ -93,6 +126,15 @@ export default function Chatbox({ chat, loggedInUser }) {
           </div>
         </div>
       </div>
+
+
+      ):(
+        <>
+        Tap on chat to start the converation. 
+        </>
+      )
+    }
+      
     </>
   );
 }
