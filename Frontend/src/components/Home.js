@@ -15,9 +15,12 @@ import ChatLayout from './ChatLayout';
 
 export default function Home() {
 
+    const state = useSelector((state) => state);
+    console.log(state)
     const history = useNavigate();
     const [isUser, setIsUser] = useState(JSON.parse(localStorage.getItem("profile-LostAndFound")));
     const dispatch = useDispatch();
+    
 
     const [searchKey, setSearchKey] = useState();
     const [showNotifications, setShowNotifications] = useState(false);

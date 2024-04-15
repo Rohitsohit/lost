@@ -3,9 +3,12 @@ import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
 import Chatbox from './ChatBox';
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 
 export default function ChatLayout() {
   const user = JSON.parse(localStorage.getItem("profile-LostAndFound"));
+  const data = useSelector((state) => state);
+  console.log(data)
   const [currentChatList, setCurrentChatList] = useState(null);
   const [chatList, setChatList] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
