@@ -6,8 +6,17 @@ export default function Card({searchKey}) {
     const history = useNavigate();
     const data = useSelector((state) => state.items);
     useEffect(() => {
-    setItems(data); 
-    }, [data])
+      if (searchKey.trim() === '') {
+        setItems(data);
+      } else {
+        const filteredItems = data.filter(
+          (item) =>
+            item.category.toLowerCase().includes(searchKey.toLowerCase()) ||
+            item.location.toLowerCase().includes(searchKey.toLowerCase())
+        );
+        setItems(filteredItems);
+      }
+    }, [data, searchKey]);
    
     const handleClick =(item)=>{
         history(`/details/${item._id}`);

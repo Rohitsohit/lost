@@ -15,14 +15,12 @@ import ChatLayout from './ChatLayout';
 
 export default function Home() {
 
-    const state = useSelector((state) => state);
-    console.log(state)
     const history = useNavigate();
     const [isUser, setIsUser] = useState(JSON.parse(localStorage.getItem("profile-LostAndFound")));
     const dispatch = useDispatch();
     
 
-    const [searchKey, setSearchKey] = useState();
+    const [searchKey, setSearchKey] = useState("");
     const [showNotifications, setShowNotifications] = useState(false);
     const [notifications, setNotifications] = useState([
         { id: 1, message: 'New message 1' },
@@ -51,13 +49,7 @@ export default function Home() {
         setIsUser(null);
     }
 
-    const [items, setItems] = useState();
-    const data = useSelector((state) => state.items);
-    useEffect(() => {
-    setItems(data); 
-    }, [data])
-
-    
+   
    
 
 
@@ -70,7 +62,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col flex-1 overflow-y-auto">
                     <nav className="flex-1 px-2 py-4 bg-gray-800">
-                        <Link to="/" className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-700">
+                        <Link to="/" onClick={(e)=>setSearchKey(e.target.value='')} className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-700">
                             Browse All
                         </Link>
                         <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
@@ -88,10 +80,10 @@ export default function Home() {
                             Category
                         </h4>
                         <div className="flex justify-center gap-2 flex-wrap p-2">
-                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600">card</button>
-                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600">wallet</button>
-                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600">Keys</button>
-                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600">camera</button>
+                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600" onClick={(e)=>setSearchKey(e.target.value='card')} >card</button>
+                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600"onClick={(e)=>setSearchKey(e.target.value='wallet')}>wallet</button>
+                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600"onClick={(e)=>setSearchKey(e.target.value='Key')}>Keys</button>
+                            <button className="bg-gray-100 rounded-full px-2 py-1 text-sm font-semibold text-gray-600"onClick={(e)=>setSearchKey(e.target.value='document')}>document</button>
                         </div>
                     </nav>
                 </div>

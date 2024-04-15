@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useSyncExternalStore, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
 import Chatbox from './ChatBox';
@@ -6,8 +6,7 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 
 export default function ChatLayout() {
-  // const user = JSON.parse(localStorage.getItem("profile-LostAndFound"));
-  
+
   const user = useSelector((state) => state.auth.authData.result);
   
   const [currentChatList, setCurrentChatList] = useState(null);
