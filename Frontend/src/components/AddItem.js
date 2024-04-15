@@ -4,15 +4,19 @@ import { useDispatch } from "react-redux";
 import {addItems} from "../actions/items"
 import { useNavigate } from "react-router-dom";
 import ImageDesign from './ImageDesign';
+import { useSelector } from "react-redux";
 const itemsData = {
     category: "",
     details: "",
     location: "",
+    user:"",
+    email:"",
+    userId:"",
     images:[]
 };
 
 export default function AddItem() {
-
+    const user = useSelector((state) => state.auth.authData.result);
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(itemsData);
     const history = useNavigate();
@@ -24,7 +28,12 @@ export default function AddItem() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
+        formData.email = user.email
+        formData.user  = user.name
+        formData.userId = user._id
+        
+        
+
         dispatch(addItems(formData,history));
     };
 

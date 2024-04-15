@@ -13,6 +13,16 @@ export const userChats = async(chatId) => {
   }
 };
 
+export const createChats = async(chatData) => {
+  try {
+    const data = await api.createChats(chatData);
+    return data.data;
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getMessages = async(chatId) => {
   try {
     const data = await api.getMessages(chatId);

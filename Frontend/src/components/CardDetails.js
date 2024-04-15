@@ -2,12 +2,25 @@ import React from 'react'
 import ImageCarousel from './ImageCarousel'
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { createChats } from '../actions/chatActions';
+import { useNavigate } from "react-router-dom";
 export default function CardDetails() {
-
+    const history = useNavigate();
+    const chatData ={
+        senderId:"",
+        receiverId:"" 
+    }
        const { id } = useParams();
        const items = useSelector((state) => state.items);
        const item = items.find((item) => item._id.toString() === id);
-
+       const user = useSelector((state) => state.auth.authData.result);
+       const handleMessage = async(e)=>{
+            e.preventDefault();
+            chatData.senderId=user._id
+            chatData.receiverId=item.userId
+            await createChats(chatData)
+            history('/messages')
+       }
     return (
  
         <>
@@ -28,7 +41,7 @@ export default function CardDetails() {
                                 </div>
                             <div class="w-full flex-1 mt-8">                                
                                 <div class="mx-auto max-w-xs">
-                                    <button
+                                    <button onClick={handleMessage}
                                         class="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                         <svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round">
