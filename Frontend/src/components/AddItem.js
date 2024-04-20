@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 import { useDispatch } from "react-redux";
-import {addItems} from "../actions/items"
+import { addItems } from "../actions/items"
 import { useNavigate } from "react-router-dom";
 import ImageDesign from './ImageDesign';
 import { useSelector } from "react-redux";
@@ -9,10 +9,10 @@ const itemsData = {
     category: "",
     details: "",
     location: "",
-    user:"",
-    email:"",
-    userId:"",
-    images:[]
+    user: "",
+    email: "",
+    userId: "",
+    images: []
 };
 
 export default function AddItem() {
@@ -29,39 +29,39 @@ export default function AddItem() {
     const onSubmit = (e) => {
         e.preventDefault();
         formData.email = user.email
-        formData.user  = user.name
+        formData.user = user.name
         formData.userId = user._id
-        
-        
 
-        dispatch(addItems(formData,history));
+
+
+        dispatch(addItems(formData, history));
     };
 
     const imageHandle = async (e) => {
         const data = new FileReader();
-    
+
         data.addEventListener("load", () => {
-          setFormData({
-            ...formData,
-            images: [...formData.images, data.result], // append new image URL to the array
-          });
-          setSlides((prevSlides) => [...prevSlides, data.result]); // append new image URL to the slides array
+            setFormData({
+                ...formData,
+                images: [...formData.images, data.result], // append new image URL to the array
+            });
+            setSlides((prevSlides) => [...prevSlides, data.result]); // append new image URL to the slides array
         });
-    
+
         data.readAsDataURL(e.target.files[0]);
-      };
-    
-      const handleImageClose = (indexToRemove) =>{
+    };
+
+    const handleImageClose = (indexToRemove) => {
         setSlides((prevSlides) => prevSlides.filter((_, index) => index !== indexToRemove));
         setFormData({
-          ...formData,
-          images: formData.images.filter((_, index) => index !== indexToRemove),
+            ...formData,
+            images: formData.images.filter((_, index) => index !== indexToRemove),
         });
-      };
-        
-      
-    
-    
+    };
+
+
+
+
     return (
         <>
             <div className="flex items-center justify-center">
@@ -122,7 +122,7 @@ export default function AddItem() {
                                 >
                                     <div>
                                         <span className="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
-                                           All Browse. 
+                                            All Browse.
                                         </span>
                                     </div>
                                 </label>
@@ -130,7 +130,7 @@ export default function AddItem() {
                         </div>
 
                         <div>
-                            
+
                         </div>
 
                         <button
@@ -140,34 +140,34 @@ export default function AddItem() {
                             Submit
                         </button>
                     </form>
-                    {/* <ImageCarousel slides={slides}></ImageCarousel> */}
+                   
                     <div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
-  <div class="-m-1 flex flex-wrap md:-m-2">
+                        <div class="-m-1 flex flex-wrap md:-m-2">
 
 
-  {slides.map((image,index) => (
-           <div class="flex w-1/3 flex-wrap relative">
-           <div class="w-full p-1 md:p-2">
-               <img
-                   alt="gallery"
-                   class="block h-full w-full rounded-lg object-cover object-center"
-                   src={image}/>
-               <button class="absolute top-0 right-0 m-2 bg-white p-2 rounded-full shadow-lg z-10" onClick={()=>handleImageClose(index)}>
-                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                   </svg>
-               </button>
-           </div>
-       </div>
-      ))}
+                            {slides.map((image, index) => (
+                                <div class="flex w-1/3 flex-wrap relative">
+                                    <div class="w-full p-1 md:p-2">
+                                        <img
+                                            alt="gallery"
+                                            class="block h-full w-full rounded-lg object-cover object-center"
+                                            src={image} />
+                                        <button class="absolute top-0 right-0 m-2 bg-white p-2 rounded-full shadow-lg z-10" onClick={() => handleImageClose(index)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
 
 
 
-      
 
-  </div>
-</div>
-                    
+
+                        </div>
+                    </div>
+
 
                 </div>
             </div>

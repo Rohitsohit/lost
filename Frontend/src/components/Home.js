@@ -132,7 +132,7 @@ export default function Home() {
                 </div>
 
                 {/* Content Area */}
-                <div className="p-4">
+                <div>
                     
                         <Routes>
                             <Route path="/" exact element={<Card searchKey={searchKey} />} />
