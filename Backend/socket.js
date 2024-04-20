@@ -1,9 +1,12 @@
-const io = require("socket.io")(8800, {
-    cors: {
-      origin: "http://localhost:3000",
-    },
-  });
-  
+import { Server } from "socket.io";
+
+const io = new Server(8800, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
+console.log("socket.io running")  
   let activeUsers = [];
   
   io.on("connection", (socket) => {
