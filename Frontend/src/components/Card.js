@@ -25,11 +25,16 @@ export default function Card({ searchKey }) {
     }
 
     return !items ? (
-        <>Loading...</>
+        <div class='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
+        <span class='sr-only'>Loading...</span>
+         <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+       <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+       <div class='h-8 w-8 bg-black rounded-full animate-bounce'></div>
+   </div>
     ) : (
         <>
             <div className="text-center p-8">
-                <h1 className="text-3xl">Lost Items</h1>
+                <h1 className="text-3xl  font-bold uppercase">Lost Items</h1>
             </div>
             <section id="Projects" className="w-full mx-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-y-10 gap-x-2 mt-10 mb-5">
                 {items.map((item) => (

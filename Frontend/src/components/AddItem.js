@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ImageCarousel from './ImageCarousel';
+import React, {useState } from 'react';
+
 import { useDispatch } from "react-redux";
 import { addItems } from "../actions/items"
 import { useNavigate } from "react-router-dom";
@@ -64,7 +64,7 @@ export default function AddItem() {
 
     return (
         <>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center p-8">
                 <div className="mx-auto w-full max-w-[750px] max-h-[750px] bg-white">
                     <form className="py-4 px-9" onSubmit={onSubmit}>
                         <div className="mb-3">
