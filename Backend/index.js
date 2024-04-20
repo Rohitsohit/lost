@@ -7,6 +7,11 @@ import user from "./routes/user.js";
 import item from './routes/item.js'
 import ChatRoute from "./routes/chatRoutes.js"
 import MessageRoute from "./routes/messageRoutes.js"
+
+import 'dotenv/config'
+const CONNECTION_URL = process.env.MONGO_URL;
+const PORT = process.env.PORT;
+
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -20,8 +25,8 @@ app.use("/lost-items",item)
 app.use('/chat', ChatRoute)
 app.use('/message', MessageRoute)
 
- const CONNECTION_URL ="mongodb+srv://Rohit:123@cluster0.xqoa6nc.mongodb.net/?retryWrites=true&w=majority";
-const PORT = 5001;
+//  const CONNECTION_URL ="mongodb+srv://Rohit:123@cluster0.xqoa6nc.mongodb.net/?retryWrites=true&w=majority";
+// const PORT = 5001;
 
 mongoose
   .connect(CONNECTION_URL)
