@@ -7,7 +7,7 @@ const io = new Server(PORT, {
   },
 });
 
-console.log("socket.io running")  
+console.log("socket.io running on",PORT)  
   let activeUsers = [];
   
   io.on("connection", (socket) => {
