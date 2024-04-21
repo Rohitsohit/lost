@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox with Tailwind CSS</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200 h-screen flex flex-col">
+    <div class="flex-1 overflow-y-auto p-4">
+        <!-- Chat Header -->
+        <div class="bg-white p-4 mb-4">
+            <h1 class="text-lg font-semibold">John Doe</h1>
+        </div>
+        <!-- Chat messages -->
+        <div class="max-w-full mx-auto h-full flex flex-col justify-between">
+            <!-- Messages container -->
+            <div class="flex-1 flex flex-col space-y-2 shadow-md p-4 rounded-lg bg-white overflow-y-auto">
+                <!-- Sender message -->
+                <div class="flex flex-col items-start">
+                    <span class="text-sm text-gray-600">Sender</span>
+                    <div class="flex items-end">
+                        <div class="bg-blue-500 text-white p-2 rounded-lg max-w-xs">
+                            Hello!
+                        </div>
+                    </div>
+                    <div class="text-xs text-gray-600 self-start mt-1">10:00 AM</div>
+                </div>
+                <!-- Receiver message -->
+                <div class="flex flex-col items-end">
+                    <span class="text-sm text-gray-600">Receiver</span>
+                    <div class="flex items-end justify-end">
+                        <div class="bg-gray-300 text-gray-700 p-2 rounded-lg max-w-xs">
+                            Hi there!
+                        </div>
+                    </div>
+                    <div class="text-xs text-gray-600 self-end mt-1">10:01 AM</div>
+                </div>
+                <!-- Add more chat messages here -->
+            </div>
+            <!-- Chat input -->
+            <div class="bg-white p-4 flex-shrink-0">
+                <div class="flex">
+                    <input type="text" placeholder="Type a message..." class="flex-1 border rounded-full p-2 mr-2">
+                    <button class="bg-blue-500 text-white p-2 rounded-full">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

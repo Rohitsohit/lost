@@ -15,21 +15,22 @@ export default function ChatList({data,loggedInUser,online}) {
   
   
   return  userDetails &&(
-    <div className="flex flex-col mt-8">
-    <div className="flex flex-row items-center justify-between text-xs">
-      <span className="font-bold">Conversations</span>
-    </div>
+    <div className="flex flex-col flex-auto h-full p-2 lg:sticky top-0">
     <div className="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
       <button className="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
         <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
           {userDetails.name.charAt(0)}
         </div>
-        <div className="ml-2 text-sm font-semibold">
-          {userDetails.name} {online ? 'Online' : 'Offline'}
+        <div className="ml-2 text-lg text-gray-600 font-bold">{/* Changed text-base to text-lg for the name */}
+          {userDetails.name}
+          <span className="ml-1 text-xs font-semibold text-gray-500"> {/* Added text-xs for smaller font size and text-gray-500 for color */}
+            {online ? 'Online' : 'Offline'}
+          </span>
         </div>
       </button>
     </div>
   </div>
+  
       
   );
 }
