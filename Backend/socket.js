@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 const io = new Server(8800, {
   cors: {
-    origin: "https://lost-roxn.onrender.com",
+    origin: "http://localhost:3000",
   },
 });
 
