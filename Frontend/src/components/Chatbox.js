@@ -1,12 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getMessages, addMessage } from '../actions/chatActions';
 import { format } from "timeago.js";
-
+import { getUserDetails } from '../actions/auth';
 export default function Chatbox({ chat, loggedInUser, setSendMessage, receivedMessage }) {
-  console.log(chat)
+  const [reciverDetails, setReciverDetails] = useState();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const scroll = useRef();
+
+
+
+  useEffect(() => {
+    if(chat){
+      const userId = chat.members.find((id)=>id !=loggedInUser)
+      fetchUserDetails(userId)
+    }
+    
+  },[chat])
+  
+  const fetchUserDetails =async(id)=>{ 
+        const data = await getUserDetails(id)
+        setReciverDetails(data);
+  }
 
   useEffect(() => {
     
@@ -57,6 +72,11 @@ export default function Chatbox({ chat, loggedInUser, setSendMessage, receivedMe
     scroll.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+    if(reciverDetails){
+      console.log(reciverDetails.name)
+    }
+
+
   return (
     <>
       {chat ? (
@@ -69,8 +89,10 @@ export default function Chatbox({ chat, loggedInUser, setSendMessage, receivedMe
                         <span className="text-lg font-semibold">J</span>
                     </div>
                     <div className="ml-4">
-                        <h1 className="text-lg font-semibold inline">John Doe</h1>
-                        <span className="text-xs text-green-500 ml-2">Online</span>
+                      {  ! reciverDetails ?(<></>):(<h1 className="text-lg font-semibold inline">{reciverDetails.name}</h1>
+)
+                                                 }
+
                     </div>
                 </div>
             </div>
@@ -90,7 +112,7 @@ export default function Chatbox({ chat, loggedInUser, setSendMessage, receivedMe
             <div className="flex flex-col items-end">
                 <span className="text-sm text-gray-600">You</span>
                 <div className="flex items-end justify-end">
-                    <div className="bg-gray-300 text-gray-700 p-2 rounded-lg max-w-xs">
+                    <div ref={scroll}className="bg-gray-300 text-gray-700 p-2 rounded-lg max-w-xs">
                         {message.text}
                     </div>
                 </div>
@@ -101,7 +123,7 @@ export default function Chatbox({ chat, loggedInUser, setSendMessage, receivedMe
             <div className="flex flex-col items-start">
                 <span className="text-sm text-gray-600">Sender</span>
                 <div className="flex items-end">
-                    <div className="bg-blue-500 text-white p-2 rounded-lg max-w-xs">
+                    <div  ref={scroll} className="bg-blue-500 text-white p-2 rounded-lg max-w-xs">
                         {message.text}
                     </div>
                 </div>

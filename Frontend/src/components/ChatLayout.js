@@ -89,7 +89,9 @@ export default function ChatLayout() {
       </div>
       {/* chatList */}
       {chatList && chatList.map((chat) => (
-        <div onClick={() => setCurrentChatList(chat)}>
+        <div onClick={() => 
+        
+        setCurrentChatList(chat)}>
           <ChatList key={chat._id} data={chat} loggedInUser={user._id} online={checkOnlineStatus(chat)} />
         </div>
       ))}

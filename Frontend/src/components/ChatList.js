@@ -8,7 +8,7 @@ export default function ChatList({data,loggedInUser,online}) {
     fetchUserDetails(userId)
   }, [])
   
-  const fetchUserDetails =async(id)=>{
+  const fetchUserDetails =async(id)=>{ 
         const data = await getUserDetails(id)
         setuserDetails(data);
   }
@@ -21,9 +21,9 @@ export default function ChatList({data,loggedInUser,online}) {
         <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
           {userDetails.name.charAt(0)}
         </div>
-        <div className="ml-2 text-lg text-gray-600 font-bold">{/* Changed text-base to text-lg for the name */}
+        <div className="ml-2 text-lg text-gray-600 font-bold">
           {userDetails.name}
-          <span className="ml-1 text-xs font-semibold text-gray-500"> {/* Added text-xs for smaller font size and text-gray-500 for color */}
+          <span className="ml-1 text-xs font-semibold text-gray-500"> 
             {online ? 'Online' : 'Offline'}
           </span>
         </div>
