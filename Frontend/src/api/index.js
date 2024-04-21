@@ -1,14 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({baseURL:'http://localhost:5001'})
-
-// API.interceptors.request.use((req)=>{
-//      if(localStorage.getItem('profile')){
-//           req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
-//      }
-
-//  return req;
-// });
+const API = axios.create({baseURL:'https://lost-roxn.onrender.com'})
 
 
 export const signIn =(formData)=>API.post('/user/signin',formData);
