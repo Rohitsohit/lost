@@ -68,7 +68,7 @@ export default function Home() {
                         <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                             Add lost item.
                         </Link>
-                        <Link to="/search-maps" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                        <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                             Search with maps.
                         </Link>
                         <h4 className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 bg-gray-800">
@@ -137,10 +137,10 @@ export default function Home() {
                         <Routes>
                             <Route path="/" exact element={<Card searchKey={searchKey} />} />
                             <Route path="/auth" exact element={<Auth />} />
-                            <Route path="/details/:id" element={<CardDetails />} />
+                            <Route path="/details/:id"  element={<CardDetails />} />
                             <Route path="/add-item" element={<AddItem />} />
                             <Route path="/messages" element={<ChatLayout />} />
-                            <Route path="/search-by-map" element={<SearchMap />} />
+                            <Route path="/search-by-map" exact element={<SearchMap/>} />
                             
                         </Routes>
                     
