@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { format } from "timeago.js";
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { createChats } from '../actions/chatActions';
@@ -52,7 +52,7 @@ export default function CardDetails() {
                     <div className="lg:col-span-2">
                         <h2 className="text-2xl font-extrabold text-gray-800">{item.category}</h2>
                         <div className="flex flex-wrap gap-4 mt-4">
-                            <p className="text-gray-400 text-xl"> <span className="text-sm-bold ml-1">Time</span></p>
+                            <p className="text-gray-400 text-xl"> <span className="text-sm-bold ml-1">{format(item.createdAt)}</span></p>
                         </div>
 
                         <div className="mt-8">

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { format } from "timeago.js";
 export default function Card({ searchKey }) {
     const [items, setItems] = useState();
     const history = useNavigate();
     const data = useSelector((state) => state.items);
-    console.log(data)
+    console.log(data.createdAt);
     useEffect(() => {
         if (searchKey.trim() === '') {
             setItems(data);
@@ -52,6 +52,8 @@ export default function Card({ searchKey }) {
                                     <p className="text-sm text-gray-600 cursor-auto ml-2">{item.location}</p>
                                     <div className="ml-auto">
                                         {/* Date placeholder */}
+                                        {format(item.createdAt)}
+                                        
                                     </div>
                                 </div>
                             </div>
