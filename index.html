@@ -1,51 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Map Layout</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-8">
-        <!-- Google Map Frame -->
-        <div id="google-map" class="mb-6 h-96 border rounded-lg overflow-hidden">
-            <!-- You can use an actual Google Map iframe here -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678910111213!2d-122.084!3d37.421999999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809a805d227b%3A0x70e4bce88b7bf2e7!2sGoogleplex!5e0!3m2!1sen!2sus!4v1613544121552!5m2!1sen!2sus" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
-
-        <!-- Input Layout for Start and Destination -->
-        <div class="flex justify-between mb-6">
-            <div class="w-1/2 pr-2">
-                <label for="start" class="block text-sm font-medium text-gray-700">Start Point</label>
-                <input type="text" id="start" name="start" class="mt-1 p-2 w-full border rounded-md">
-            </div>
-            <div class="w-1/2 pl-2">
-                <label for="destination" class="block text-sm font-medium text-gray-700">Destination</label>
-                <input type="text" id="destination" name="destination" class="mt-1 p-2 w-full border rounded-md">
-            </div>
-        </div>
-
-        <!-- Container of Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2">Card 1</h2>
-                <p class="text-gray-600">Some text for card 1.</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2">Card 2</h2>
-                <p class="text-gray-600">Some text for card 2.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2">Card 3</h2>
-                <p class="text-gray-600">Some text for card 3.</p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+const [sampleData, setSampleData] = useState([
+     
+{ id: 1, lat: 43.700734, lng: -79.68938181739026, name: 'San Francisco' },
+{ id: 2, lat: 43.66561184715716, lng: -79.55484427506336, name: 'Los Angeles' },
+{ id: 3, lat: 40.7128, lng: -74.0060, name: 'New York City' },
+, 
+{ id: 4, lat: 43.64465302007994, lng: -79.3806269500272, name: 'New York City' },
+// Add more sample data here...
+]);

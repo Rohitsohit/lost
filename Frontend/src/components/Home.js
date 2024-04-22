@@ -4,7 +4,7 @@ import AddItem from "./AddItem";
 import Card from "./Card";
 import CardDetails from "./CardDetails";
 
-
+// AIzaSyBLfykLwb82ZSPRJgYe5h-WZWiYFoxofj0
 import Auth from "./Auth";
 import SearchMap from './SearchMap';
 import { useDispatch } from "react-redux";
