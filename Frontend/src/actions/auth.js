@@ -17,6 +17,7 @@ export const signin = (formData,history) => async (dispatch) => {
 export const signup = (formData,history) => async (dispatch) => {
   try {
     const data = await api.signUp(formData);
+    data=data.data
    dispatch({ type: AUTH, data });
     history("/");
   } catch (error) {

@@ -6,7 +6,7 @@ export default function Card({ searchKey }) {
     const [items, setItems] = useState();
     const history = useNavigate();
     const data = useSelector((state) => state.items);
-
+    console.log(data)
     useEffect(() => {
         if (searchKey.trim() === '') {
             setItems(data);
@@ -41,7 +41,7 @@ export default function Card({ searchKey }) {
                     <div key={item._id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl cursor-pointer" onClick={() => handleClick(item)}>
                         <a>
                             <img 
-                                src="https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                                src={item.images[0]}
                                 alt="Product"
                                 className="h-80 w-72 object-cover rounded-t-xl"
                             />

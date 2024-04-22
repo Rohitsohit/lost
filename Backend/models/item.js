@@ -8,6 +8,12 @@ const itemSchema = mongoose.Schema({
     email : {type: String},
     userId:{type: String},
      images: [{ type: String}]
-});
+
+},
+{
+    timestamps: true,
+  }
+
+);
 
 export default mongoose.model('LostItem', itemSchema);
