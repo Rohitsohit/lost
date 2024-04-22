@@ -6,7 +6,6 @@ export default function Card({ searchKey }) {
     const [items, setItems] = useState();
     const history = useNavigate();
     const data = useSelector((state) => state.items);
-    console.log(data.createdAt);
     useEffect(() => {
         if (searchKey.trim() === '') {
             setItems(data);

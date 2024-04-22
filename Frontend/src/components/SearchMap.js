@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { format } from "timeago.js";
 
 const GoogleMapComponent = () => {
   const [startPoint, setStartPoint] = useState('');
@@ -6,16 +9,11 @@ const GoogleMapComponent = () => {
   const [map, setMap] = useState(null);
   const [directionsService, setDirectionsService] = useState(null);
   const [directionsRenderer, setDirectionsRenderer] = useState(null);
-  const [sampleData, setSampleData] = useState([
-     
-    { id: 1, lat: 43.700734, lng: -79.68938181739026, name: 'San Francisco' },
-    { id: 2, lat: 43.66561184715716, lng: -79.55484427506336, name: 'Los Angeles' },
-    { id: 3, lat: 40.7128, lng: -74.0060, name: 'New York City' },
-    , 
-    { id: 4, lat: 43.64465302007994, lng: -79.3806269500272, name: 'New York City' },
-    // Add more sample data here...
-    ]);
+  const [items, setItems] = useState();
+  const history = useNavigate();
 
+    const data = useSelector((state) => state.items);
+    
   useEffect(() => {
     const google = window.google;
     const map = new google.maps.Map(document.getElementById('map'), {
@@ -56,10 +54,11 @@ const GoogleMapComponent = () => {
   };
 
   const filterNearbyPlaces = (route) => {
+    
     const google = window.google;
     const bounds = new google.maps.LatLngBounds();
 
-    const filteredData = sampleData.filter((place) => {
+    const filteredData = data.filter((place) => {
       const latLng = new google.maps.LatLng(place.lat, place.lng);
       return route.some((pathLatLng) => {
         bounds.extend(pathLatLng);
@@ -68,7 +67,14 @@ const GoogleMapComponent = () => {
     });
 
     console.log(filteredData);
+    setItems(filteredData);
+    
   };
+
+  const handleClick = (item) => {
+    history(`/details/${item._id}`);
+}
+
 
   return (
     <div className="container mx-auto p-8">
@@ -115,12 +121,41 @@ const GoogleMapComponent = () => {
 
       {/* Container of Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {sampleData.map((place) => (
-          <div key={place.id} className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-2">{place.name}</h2>
-            <p className="text-gray-600">Latitude: {place.lat}, Longitude: {place.lng}</p>
-          </div>
-        ))}
+     { !items ? (
+       <>
+       </>
+    ) : (
+        <>
+            <div className="text-center p-8">
+                <h1 className="text-3xl  font-bold uppercase">Lost Items</h1>
+            </div>
+            <section id="Projects" className="w-full mx-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-y-10 gap-x-2 mt-10 mb-5">
+                {items.map((item) => (
+                    <div key={item._id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl cursor-pointer" onClick={() => handleClick(item)}>
+                        <a>
+                            <img 
+                                src={item.images[0]}
+                                alt="Product"
+                                className="h-80 w-72 object-cover rounded-t-xl"
+                            />
+                            <div className="px-4 py-3 w-72">
+                                <span className="text-gray-400 mr-3 uppercase text-xs">{item.category}</span>
+                                <p className="text-lg font-bold text-black truncate block capitalize">{item.details}</p>
+                                <div className="flex items-center">
+                                    <p className="text-sm text-gray-600 cursor-auto ml-2">{item.location}</p>
+                                    <div className="ml-auto">
+                                        {/* Date placeholder */}
+                                        {format(item.createdAt)}
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                ))}
+            </section>
+        </>
+    )}
       </div>
     </div>
   );
