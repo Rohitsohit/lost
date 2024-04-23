@@ -65,9 +65,17 @@ export default function Home() {
                         <Link to="/" onClick={(e)=>setSearchKey(e.target.value='')} className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-700">
                             Browse All
                         </Link>
-                        <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
-                            Add lost item.
-                        </Link>
+                        
+                        {isUser ? (
+                           <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                           Add lost item.
+                       </Link>
+                        ) : (
+                            <></>
+                        )}
+
+
+
                         <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                             Search with maps.
                         </Link>

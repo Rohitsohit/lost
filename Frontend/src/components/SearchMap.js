@@ -116,7 +116,7 @@ const GoogleMapComponent = () => {
         className="bg-blue-500 text-white px-4 py-2 rounded"
         onClick={handleCalculateRoute}
       >
-        Calculate Route
+        Items on this Route.
       </button>
 
       {/* Container of Cards */}
@@ -126,9 +126,6 @@ const GoogleMapComponent = () => {
        </>
     ) : (
         <>
-            <div className="text-center p-8">
-                <h1 className="text-3xl  font-bold uppercase">Lost Items</h1>
-            </div>
             <section id="Projects" className="w-full mx-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-y-10 gap-x-2 mt-10 mb-5">
                 {items.map((item) => (
                     <div key={item._id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl cursor-pointer" onClick={() => handleClick(item)}>
