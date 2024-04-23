@@ -17,15 +17,15 @@ export default function ChatBoxLayout({ chat, loggedInUser, setSendMessage, rece
     }, [chat]);
 
     const fetchUserDetails = async (id) => {
-        // const data = await getUserDetails(id);
-        // setReciverDetails(data);
+        const data = await getUserDetails(id);
+        setReciverDetails(data);
     };
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                // const data = await getMessages(chat._id);
-                // setMessages(data);
+                const data = await getMessages(chat._id);
+                setMessages(data);
             } catch (error) {
                 console.log(error);
             }
@@ -56,8 +56,8 @@ export default function ChatBoxLayout({ chat, loggedInUser, setSendMessage, rece
         setSendMessage({ ...textMessage, receiverId });
 
         try {
-            // const data = await addMessage(textMessage);
-            // setMessages([...messages, data]);
+            const data = await addMessage(textMessage);
+            setMessages([...messages, data]);
             setNewMessage("");
         } catch {
             console.log("error");

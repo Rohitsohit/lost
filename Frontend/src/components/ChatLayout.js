@@ -4,7 +4,6 @@ import { userChats } from '../actions/chatActions';
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import ChatBoxLayout from './ChatBoxLayout';
-// import ChatBox from './ChatBox';
 
 export default function ChatLayout() {
 
