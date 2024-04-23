@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
 export default function Card({ searchKey }) {
     const [items, setItems] = useState();
+    const [Address, setAddress] = useState();
     const history = useNavigate();
     const data = useSelector((state) => state.items);
+    console.log(data)
     useEffect(() => {
         if (searchKey.trim() === '') {
             setItems(data);
@@ -22,14 +24,10 @@ export default function Card({ searchKey }) {
     const handleClick = (item) => {
         history(`/details/${item._id}`);
     }
+   
 
     return !items ? (
-        <div class='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
-        <span class='sr-only'>Loading...</span>
-         <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-       <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-       <div class='h-8 w-8 bg-black rounded-full animate-bounce'></div>
-   </div>
+        <>Loading....</>
     ) : (
         <>
             <div className="text-center p-8">
@@ -48,8 +46,8 @@ export default function Card({ searchKey }) {
                                 <span className="text-gray-400 mr-3 uppercase text-xs">{item.category}</span>
                                 <p className="text-lg font-bold text-black truncate block capitalize">{item.details}</p>
                                 <div className="flex items-center">
-                                    <p className="text-sm text-gray-600 cursor-auto ml-2">{item.location}</p>
-                                    <div className="ml-auto">
+                                <p className="text-sm text-gray-600 cursor-auto ml-2">
+      </p>                                    <div className="ml-auto">
                                         {/* Date placeholder */}
                                         {format(item.createdAt)}
                                         

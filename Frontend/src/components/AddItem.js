@@ -15,7 +15,7 @@ const itemsData = {
 };
 
 export default function AddItem() {
-    const user = useSelector((state) => state.auth);
+    const user = useSelector((state) => state.auth.authData.result);
     console.log(user)
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(itemsData);

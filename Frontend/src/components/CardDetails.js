@@ -6,7 +6,7 @@ import { createChats } from '../actions/chatActions';
 import { useNavigate } from "react-router-dom";
 
 export default function CardDetails() {
-
+    const [Address, setAddress] = useState();
     const history = useNavigate();
     const chatData = {
         senderId: "",
@@ -16,9 +16,9 @@ export default function CardDetails() {
     const { id } = useParams();
     const items = useSelector((state) => state.items);
     const item = items.find((item) => item._id.toString() === id);
-    console.log(item)
+    
     const user = useSelector((state) => state.auth.authData.result);
-
+    
     const [selectedImage, setSelectedImage] = useState(item.images[0]);
 
     const handleMessage = async (e) => {
@@ -30,6 +30,33 @@ export default function CardDetails() {
         // history('/messages');
     };
 
+
+    const getAddressFromLatLng = (locationStr) => {
+        const latitudeMatch = locationStr.match(/Latitude:\s*(-?\d+\.\d+)/);
+const longitudeMatch = locationStr.match(/Longitude:\s*(-?\d+\.\d+)/);
+
+const lat = latitudeMatch ? parseFloat(latitudeMatch[1]) : null;
+const lng = longitudeMatch ? parseFloat(longitudeMatch[1]) : null;
+
+    const google = window.google;
+    const geocoder = new google.maps.Geocoder();
+    const latlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+    geocoder.geocode({ location: latlng }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          setAddress(results[0].formatted_address);
+        } else {
+          console.log('No reßsults found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+    });
+  };
+
+  getAddressFromLatLng(item.location)
+  console.log(item)
     return (
         <div className="font-[sans-serif]">
             <div className="p-6 lg:max-w-7xl max-w-2xl max-lg:mx-auto">
@@ -62,7 +89,7 @@ export default function CardDetails() {
                                     </ul>
                         </div>
                         <div className="mt-8 max-w-md">
-                        <h3 class="text-lg font-bold text-gray-800">{item.location}</h3>
+                        <h3 class="text-lg font-bold text-gray-800">{Address}</h3>
                             <div className="flex items-start mt-8" onClick={handleMessage}>
                                 <img src="https://readymadeui.com/team-2.webp" className="w-12 h-12 rounded-full border-2 border-white" />
                                 <div className="ml-2">
