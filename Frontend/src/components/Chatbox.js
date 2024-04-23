@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getMessages, addMessage } from '../actions/chatActions';
-import { format } from "timeago.js";
+// import { format } from "timeago.js";
 import { getUserDetails } from '../actions/auth';
 
 export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMessage }) {
@@ -118,7 +118,7 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
                                   {message.text}
                                 </div>
                               </div>
-                              <div className="text-xs text-gray-600 self-end mt-1">{format(message.createdAt)}</div>
+                              <div className="text-xs text-gray-600 self-end mt-1">{message.createdAt}</div>
                             </div>
                           ) : (
                             // Sender message
@@ -129,7 +129,7 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
                                   {message.text}
                                 </div>
                               </div>
-                              <div className="text-xs text-gray-600 self-start mt-1">{format(message.createdAt)}</div>
+                              {/* <div className="text-xs text-gray-600 self-start mt-1">{format(message.createdAt)}</div> */}
                             </div>
                           )}
                         </div>
