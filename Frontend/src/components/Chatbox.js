@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import { format } from "timeago.js";
-// import { addMessage, getMessages } from '../actions/chatActions';
+import { addMessage, getMessages } from '../actions/chatActions';
 import { getUserDetails } from '../actions/auth';
-
 
 export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMessage }) {
   const [reciverDetails, setReciverDetails] = useState();
@@ -11,13 +9,9 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
   const [newMessage, setNewMessage] = useState("");
   const scroll = useRef();
 
-  
-
   useEffect(() => {
-
-    
     if (chat) {
-      const userId = chat.members.find((id) => id != loggedInUser);
+      const userId = chat.members.find((id) => id !== loggedInUser);
       fetchUserDetails(userId);
     }
   }, [chat]);
@@ -30,8 +24,8 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        // const data = await getMessages(chat._id);
-        // setMessages(data);
+        const data = await getMessages(chat._id);
+        setMessages(data);
       } catch (error) {
         console.log(error);
       }
@@ -47,7 +41,6 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
   const handleClick = async (e) => {
     e.preventDefault();
     
-    // Check if newMessage is empty
     if (!newMessage.trim()) {
       return;
     }
@@ -63,8 +56,8 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
     setSendMessage({ ...textMessage, receiverId });
 
     try {
-      // const data = await addMessage(textMessage);
-      // setMessages([...messages, data]);
+      const data = await addMessage(textMessage);
+      setMessages([...messages, data]);
       setNewMessage("");
     } catch {
       console.log("error");
@@ -86,7 +79,6 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
       {chat ? (
         <>
           <div className="flex flex-col flex-auto h-full p-1 lg:sticky top-0">
-            {/* Chat Header */}
             <div className="bg-white p-4 mb-2 sticky top-0 z-10 flex items-center justify-between">
               {!reciverDetails ? (
                 <></>
@@ -102,11 +94,8 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
               )}
             </div>
             <div className="flex-1 overflow-y-auto">
-              {/* Chat messages */}
               <div className="max-w-full mx-auto h-full flex flex-col justify-between">
-                {/* Messages container */}
                 <div className="flex-1 flex flex-col space-y-2 shadow-md p-4 rounded-lg bg-white overflow-y-auto">
-                  {/* Render messages */}
                   {messages.length > 0 &&
                     messages.map((message, index) => (
                       <div
@@ -116,7 +105,6 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
                         }`}
                       >
                         {message.senderId === loggedInUser ? (
-                          // Receiver message
                           <div className="flex flex-col items-end">
                             <span className="text-sm text-gray-600">You</span>
                             <div className="flex items-end justify-end">
@@ -127,7 +115,6 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
                             <div className="text-xs text-gray-600 self-end mt-1">{format(message.createdAt)}</div>
                           </div>
                         ) : (
-                          // Sender message
                           <div className="flex flex-col items-start">
                             <span className="text-sm text-gray-600">Sender</span>
                             <div className="flex items-end">
@@ -142,7 +129,6 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
                     ))}
                 </div>
               </div>
-              {/* Chat input */}
               <div className="bg-white p-4 flex-shrink-0 sticky bottom-0 z-10">
                 <div className="flex">
                   <input
