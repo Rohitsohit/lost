@@ -3,7 +3,7 @@ import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
-import ChatBox from './ChatBox';
+// import ChatBox from './ChatBox';
 
 export default function ChatLayout() {
 
@@ -99,7 +99,7 @@ export default function ChatLayout() {
     </div>
 
     {/* Chatbox */}
-    <ChatBox chat={currentChatList} loggedInUser={user._id} setSendMessage={setSendMessage} receivedMessage={receivedMessage}></ChatBox>
+    {/* <ChatBox chat={currentChatList} loggedInUser={user._id} setSendMessage={setSendMessage} receivedMessage={receivedMessage}></ChatBox> */}
     
   </div>
 </div>
