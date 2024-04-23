@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
-import Chatbox from './ChatBox.js';
+
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
+import ChatBox from './ChatBox';
 
 export default function ChatLayout() {
 
@@ -65,6 +66,7 @@ export default function ChatLayout() {
 
   return (
     <>
+    
     <div className="flex h-screen antialiased text-gray-800">
   <div className="flex flex-row h-full w-full overflow-x-hidden">
     <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0 lg:sticky top-0"> {/* Added lg:sticky and top-0 */}
@@ -98,7 +100,8 @@ export default function ChatLayout() {
     </div>
 
     {/* Chatbox */}
-    <Chatbox chat={currentChatList} loggedInUser={user._id} setSendMessage={setSendMessage} receivedMessage={receivedMessage}></Chatbox>
+    <ChatBox chat={currentChatList} loggedInUser={user._id} setSendMessage={setSendMessage} receivedMessage={receivedMessage}></ChatBox>
+    
   </div>
 </div>
 
