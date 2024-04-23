@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
-
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import ChatBox from './ChatBox';
