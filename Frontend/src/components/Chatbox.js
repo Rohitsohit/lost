@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { format } from "timeago.js";
 import { addMessage, getMessages } from '../actions/chatActions';
-import { getUserDetails } from '../actions/auth';
+// import { getUserDetails } from '../actions/auth';
 
 
 export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMessage }) {
@@ -23,8 +23,8 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
   }, [chat]);
 
   const fetchUserDetails = async (id) => {
-    const data = await getUserDetails(id);
-    setReciverDetails(data);
+    // const data = await getUserDetails(id);
+    // setReciverDetails(data);
   };
 
   useEffect(() => {
