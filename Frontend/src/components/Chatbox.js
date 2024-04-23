@@ -1,7 +1,7 @@
 import React from 'react';
-// import { format } from "timeago.js";
-// import { addMessage, getMessages } from '../actions/chatActions';
-// import { getUserDetails } from '../actions/auth';
+import { format } from "timeago.js";
+import { addMessage, getMessages } from '../actions/chatActions';
+import { getUserDetails } from '../actions/auth';
 
 export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMessage }) {
   // const [reciverDetails, setReciverDetails] = useState();

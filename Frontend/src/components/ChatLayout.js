@@ -101,7 +101,7 @@ export default function ChatLayout() {
 
     {/* Chatbox */}
     {/* <ChatBox chat={currentChatList} loggedInUser={user._id} setSendMessage={setSendMessage} receivedMessage={receivedMessage}></ChatBox> */}
-    <ChatBoxLayout></ChatBoxLayout>
+    <ChatBoxLayout chat={currentChatList} loggedInUser={user._id} setSendMessage={setSendMessage} receivedMessage={receivedMessage}></ChatBoxLayout>
   </div>
 </div>
 
