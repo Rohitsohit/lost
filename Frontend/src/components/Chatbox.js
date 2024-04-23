@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { format } from "timeago.js";
-import { addMessage, getMessages } from '../actions/chatActions';
-import { getUserDetails } from '../actions/auth';
+// import { addMessage, getMessages } from '../actions/chatActions';
+// import { getUserDetails } from '../actions/auth';
 
 export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMessage }) {
   const [reciverDetails, setReciverDetails] = useState();
@@ -17,15 +17,15 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
   }, [chat]);
 
   const fetchUserDetails = async (id) => {
-    const data = await getUserDetails(id);
-    setReciverDetails(data);
+    // const data = await getUserDetails(id);
+    // setReciverDetails(data);
   };
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const data = await getMessages(chat._id);
-        setMessages(data);
+        // const data = await getMessages(chat._id);
+        // setMessages(data);
       } catch (error) {
         console.log(error);
       }
@@ -56,8 +56,8 @@ export default function ChatBox({ chat, loggedInUser, setSendMessage, receivedMe
     setSendMessage({ ...textMessage, receiverId });
 
     try {
-      const data = await addMessage(textMessage);
-      setMessages([...messages, data]);
+      // const data = await addMessage(textMessage);
+      // setMessages([...messages, data]);
       setNewMessage("");
     } catch {
       console.log("error");
