@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChatList from './ChatList';
 import { userChats } from '../actions/chatActions';
-import Chatbox from './ChatBox';
+import Chatbox from './ChatBox.js';
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 
