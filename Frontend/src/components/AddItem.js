@@ -7,7 +7,10 @@ import { useSelector } from "react-redux";
 const itemsData = {
     category: "",
     details: "",
-    location: "",
+    location: {
+        latitude:"",
+        longitude:""
+    },
     user: "",
     email: "",
     userId: "",
@@ -31,7 +34,7 @@ export default function AddItem() {
         formData.email = user.email;
         formData.user = user.name;
         formData.userId = user._id;
-
+        console.log(formData)
         dispatch(addItems(formData, history));
     };
 
@@ -62,9 +65,13 @@ export default function AddItem() {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
+                    console.log(latitude)
                     setFormData({
                         ...formData,
-                        location: `Latitude: ${latitude}, Longitude: ${longitude}`,
+                        location : {
+                            latitude:latitude,
+                            longitude:longitude
+                        }, 
                     });
                     setIsLocationEditable(true);
                 },
@@ -112,7 +119,7 @@ export default function AddItem() {
                             <input
                                 type="text"
                                 name="location"
-                                value={formData.location}
+                                value={formData.location.latitude+""+formData.location.longitude}
                                 onChange={onChange}
                                 className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mr-4 ${isLocationEditable ? '' : 'bg-gray-200'}`}
                                 readOnly={!isLocationEditable}

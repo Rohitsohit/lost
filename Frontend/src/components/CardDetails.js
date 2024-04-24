@@ -6,6 +6,7 @@ import { createChats } from '../actions/chatActions';
 import { useNavigate } from "react-router-dom";
 
 export default function CardDetails() {
+
     const [Address, setAddress] = useState();
     const history = useNavigate();
     const chatData = {
@@ -16,7 +17,7 @@ export default function CardDetails() {
     const { id } = useParams();
     const items = useSelector((state) => state.items);
     const item = items.find((item) => item._id.toString() === id);
-    
+    console.log(item)
     const user = useSelector((state) => state.auth.authData.result);
     
     const [selectedImage, setSelectedImage] = useState(item.images[0]);
@@ -31,12 +32,11 @@ export default function CardDetails() {
     };
 
 
-    const getAddressFromLatLng = (locationStr) => {
-        const latitudeMatch = locationStr.match(/Latitude:\s*(-?\d+\.\d+)/);
-const longitudeMatch = locationStr.match(/Longitude:\s*(-?\d+\.\d+)/);
+    const getAddressFromLatLng = (location) => {
+console.log(location.longitude)
 
-const lat = latitudeMatch ? parseFloat(latitudeMatch[1]) : null;
-const lng = longitudeMatch ? parseFloat(longitudeMatch[1]) : null;
+const lat = location.latitude
+const lng = location.longitude
 
     const google = window.google;
     const geocoder = new google.maps.Geocoder();

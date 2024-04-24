@@ -48,7 +48,7 @@ export default function Card({ searchKey }) {
                                 <div className="flex items-center">
                                 <p className="text-sm text-gray-600 cursor-auto ml-2">
       </p>                                    <div className="ml-auto">
-                                        {/* Date placeholder */}
+                                        {/* Time placeholder */}
                                         {format(item.createdAt)}
                                         
                                     </div>
