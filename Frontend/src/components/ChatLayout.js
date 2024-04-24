@@ -5,11 +5,16 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import ChatBoxLayout from './ChatBoxLayout';
 
+import { useLocation } from 'react-router-dom';
 export default function ChatLayout() {
-
+  
+  
+  const location = useLocation();
+  const { chat } = location.state || {};
+  
   const user = useSelector((state) => state.auth.authData.result);
   
-  const [currentChatList, setCurrentChatList] = useState(null);
+  const [currentChatList, setCurrentChatList] = useState(chat);
   const [chatList, setChatList] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [sendMessage, setSendMessage] = useState(null);

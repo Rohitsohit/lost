@@ -23,6 +23,13 @@ export const createChats = async(chatData) => {
   }
 };
 
+export const findChat = async(senderId,receiverId)=>{
+ const res =  await api.findChats(senderId,receiverId);
+ return res.data
+}
+
+
+
 export const getMessages = async(chatId) => {
   try {
     const data = await api.getMessages(chatId);

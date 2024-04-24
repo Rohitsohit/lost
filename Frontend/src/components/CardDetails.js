@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { format } from "timeago.js";
 import { useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { createChats } from '../actions/chatActions';
+import { createChats, findChat } from '../actions/chatActions';
 import { useNavigate } from "react-router-dom";
 
 export default function CardDetails() {
-
+    
     const [Address, setAddress] = useState();
     const history = useNavigate();
     const chatData = {
@@ -17,23 +17,29 @@ export default function CardDetails() {
     const { id } = useParams();
     const items = useSelector((state) => state.items);
     const item = items.find((item) => item._id.toString() === id);
-    console.log(item)
+    
     const user = useSelector((state) => state.auth.authData.result);
     
     const [selectedImage, setSelectedImage] = useState(item.images[0]);
 
     const handleMessage = async (e) => {
         e.preventDefault();
-        console.log("messege")
-        // chatData.senderId = user._id;
-        // chatData.receiverId = item.userId;
-        // await createChats(chatData);
-        // history('/messages');
+            chatData.senderId = user._id;
+            chatData.receiverId = item.userId;
+            
+        let res =  await findChat(chatData.senderId,chatData.receiverId)
+        
+        if(res==null){
+                console.log("inside message")
+                res=await createChats(chatData);
+            }
+            
+            history('/messages', { state: { chat: res } });
     };
 
 
     const getAddressFromLatLng = (location) => {
-console.log(location.longitude)
+
 
 const lat = location.latitude
 const lng = location.longitude
@@ -56,7 +62,7 @@ const lng = location.longitude
   };
 
   getAddressFromLatLng(item.location)
-  console.log(item)
+ 
     return (
         <div className="font-[sans-serif]">
             <div className="p-6 lg:max-w-7xl max-w-2xl max-lg:mx-auto">

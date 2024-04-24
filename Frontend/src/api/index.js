@@ -12,7 +12,7 @@ export const addItems =(formData)=>API.post('/lost-items/add-item',formData);
 
 export const userChats =(chatId)=>API.get(`/chat/${chatId}`);
 export const createChats =(chatData)=>API.post('/chat/',chatData);
-
+export const findChats =(senderId,receiverId)=>API.get(`/chat/find/${senderId}/${receiverId}`);
 
 
 

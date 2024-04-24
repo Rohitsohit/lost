@@ -3,7 +3,7 @@ import { format } from "timeago.js";
 import { addMessage, getMessages } from '../actions/chatActions';
 import { getUserDetails } from '../actions/auth';
 export default function ChatBoxLayout({ chat, loggedInUser, setSendMessage, receivedMessage }) {
-
+    // console.log(chat)
     const [reciverDetails, setReciverDetails] = useState();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
