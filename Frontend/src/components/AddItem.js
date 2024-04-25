@@ -127,10 +127,13 @@ export default function AddItem() {
                             <button
                                 type="button"
                                 onClick={getCurrentLocation}
-                                className="rounded-md bg-[#6A64F1] py-3 px-6 text-center text-base font-semibold text-white outline-none hover:bg-[#6B7280]"
+                                class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 no-underline"
                             >
-                                Get Current Location
+                            Current Location
                             </button>
+                            
+                     
+
                         </div>
 
                         <div className="mb-3 pt-2">
@@ -153,11 +156,12 @@ export default function AddItem() {
                         </div>
 
                         <button
-                            type="submit"
-                            className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
-                        >
-                            Submit
-                        </button>
+    type="submit"
+    className="hover:shadow-form w-full rounded-md bg-gray-700 py-3 px-8 text-center text-base font-semibold text-white outline-none"
+>
+    Submit
+</button>
+
                     </form>
 
                     <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">

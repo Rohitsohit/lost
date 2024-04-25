@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AddItem from "./AddItem";
 import Card from "./Card";
 import CardDetails from "./CardDetails";
-
-// AIzaSyBLfykLwb82ZSPRJgYe5h-WZWiYFoxofj0
 import Auth from "./Auth";
 import SearchMap from './SearchMap';
 import { useDispatch } from "react-redux";
@@ -12,14 +10,17 @@ import { useNavigate } from "react-router-dom";
 
 import ChatLayout from './ChatLayout';
 
-
 export default function Home() {
+    const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
 
     const history = useNavigate();
     const [isUser, setIsUser] = useState(JSON.parse(localStorage.getItem("profile-LostAndFound")));
     const dispatch = useDispatch();
     
-
     const [searchKey, setSearchKey] = useState("");
     const [showNotifications, setShowNotifications] = useState(false);
     const [notifications, setNotifications] = useState([
@@ -32,7 +33,7 @@ export default function Home() {
         setShowNotifications(!showNotifications);
     };
 
-    const handeSearch = (e) => {
+    const handleSearch = (e) => {
         e.preventDefault();
         setSearchKey(e.target.value.toLowerCase())
     }
@@ -41,7 +42,6 @@ export default function Home() {
         setIsUser(JSON.parse(localStorage.getItem("profile-LostAndFound")));
     }, [history]);
     
-
     const handleLogOut = (e) => {
         e.preventDefault();
         dispatch({ type: "LOGOUT" });
@@ -49,14 +49,10 @@ export default function Home() {
         setIsUser(null);
     }
 
-   
-   
-
-
     return (
         <div className="flex min-h-screen bg-gray-100">
             {/* Sidebar */}
-            <div className="md:flex flex-col w-64 bg-gray-800">
+            <div className="md:flex md:flex-col w-64 bg-gray-800">
                 <div className="flex items-center justify-center h-16 bg-gray-900">
                     <span className="text-white font-bold uppercase">Lost and Found</span>
                 </div>
@@ -67,18 +63,19 @@ export default function Home() {
                         </Link>
                         
                         {isUser ? (
+                            <>
                            <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                            Add lost item.
                        </Link>
+                       <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                            Search with maps.
+                        </Link>
+                        </>
                         ) : (
                             <></>
                         )}
 
-
-
-                        <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
-                            Search with maps.
-                        </Link>
+                        
                         <h4 className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 bg-gray-800">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -100,18 +97,25 @@ export default function Home() {
             {/* Main Content */}
             <div className="flex flex-col flex-1 overflow-y-auto">
                 <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
-                    <div className="flex items-center px-4">
-                        <input className="mx-4 w-full border rounded-md px-4 py-2" type="text" onChange={handeSearch} placeholder="Search your item here. " />
-                    </div>
+                <div className="flex items-center px-4">
+    <input 
+        className="mx-4 w-full border rounded-md px-4 py-2 focus:border-gray-900 focus:outline-none"
+        type="text" 
+        onChange={handleSearch} 
+        placeholder="Search your item here."
+    />
+</div>
                     <div className="flex items-center pr-4">
                         {isUser ? (
                             <div className="flex items-center space-x-5">
 
-                                <Link to="/messages" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
-                                    Messages
-                                </Link>
+                              
+ <Link to="/messages" class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 no-underline">
+  Messages
+</Link>
 
-                                <div className="relative">
+
+                                {/* <div className="relative">
                                     <button onClick={toggleNotifications} className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                                         Notifications
                                     </button>
@@ -123,14 +127,14 @@ export default function Home() {
                                                 </p>
                                             ))}
                                         </div>
-                                    )}
+                                    )} */}
 
-                                <button onClick={handleLogOut}  className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700" >
-                                  Logout
-                            </button>
+<Link  onClick={handleLogOut} class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 no-underline">
+  LogOut
+</Link>
                                 </div>
 
-                            </div>
+                            // </div>
                         ) : (
                             <Link to="/auth" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                                 Sign In
@@ -155,5 +159,7 @@ export default function Home() {
                 </div>
             </div>
         </div>
+
+       
     )
 }

@@ -14,8 +14,7 @@ export default function Card({ searchKey }) {
         } else {
             const filteredItems = data.filter(
                 (item) =>
-                    item.category.toLowerCase().includes(searchKey.toLowerCase()) ||
-                    item.location.toLowerCase().includes(searchKey.toLowerCase())
+                    item.category.toLowerCase().includes(searchKey.toLowerCase()) 
             );
             setItems(filteredItems);
         }

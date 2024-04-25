@@ -30,7 +30,7 @@ const GoogleMapComponent = () => {
     setDirectionsRenderer(directionsRenderer);
   }, []);
 
-  const handleCalculateRoute = () => {
+  const handleRouteSearch = () => {
     const google = window.google;
     directionsService.route(
       {
@@ -114,8 +114,8 @@ const GoogleMapComponent = () => {
 
       {/* Calculate Route Button */}
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-        onClick={handleCalculateRoute}
+        class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 no-underline"
+        onClick={handleRouteSearch}
       >
         Items on this Route.
       </button>
