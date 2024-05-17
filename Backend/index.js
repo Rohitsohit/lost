@@ -24,8 +24,9 @@ app.use("/lost-items",item)
 app.use('/chat', ChatRoute)
 app.use('/message', MessageRoute)
 
-//  const CONNECTION_URL ="mongodb+srv://Rohit:123@cluster0.xqoa6nc.mongodb.net/?retryWrites=true&w=majority";
-// const PORT = 5001;
+app.use("/",(req,res)=>{
+  res.json("server is stated....")
+})
 
 mongoose
   .connect(CONNECTION_URL)
