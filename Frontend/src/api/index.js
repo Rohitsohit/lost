@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({baseURL:'https://lost-roxn.onrender.com'})
+const API = axios.create({baseURL:'https://lost-backend-api.vercel.app'})
 //const API = axios.create({baseURL:'http://localhost:5001'})
 
 
