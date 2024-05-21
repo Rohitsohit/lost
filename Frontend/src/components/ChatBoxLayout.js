@@ -117,7 +117,7 @@ export default function ChatBoxLayout({ chat, loggedInUser, setSendMessage, rece
                                                     <div className="flex flex-col items-start">
                                                         <span className="text-sm text-gray-600">Sender</span>
                                                         <div className="flex items-end">
-                                                            <div ref={scroll} className="bg-blue-500 text-white p-3 rounded-lg max-w-xs text-lg">
+                                                            <div ref={scroll} className="text-gray-100 bg-gray-800 p-3 rounded-lg max-w-xs text-lg">
                                                                 {message.text}
                                                             </div>
                                                         </div>
@@ -136,7 +136,7 @@ export default function ChatBoxLayout({ chat, loggedInUser, setSendMessage, rece
                                         onChange={handleChange}
                                         value={newMessage}
                                     />
-                                    <button className="bg-blue-500 text-white py-3 px-6 rounded-full text-lg" onClick={handleClick}>
+                                    <button className="text-gray-100 bg-gray-800 py-3 px-6 rounded-full text-lg" onClick={handleClick}>
                                         Send
                                     </button>
                                 </div>

@@ -53,15 +53,15 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col flex-1 overflow-y-auto">
                     <nav className="flex-1 px-2 py-4 bg-gray-800">
-                        <Link to="/" onClick={(e) => setSearchKey(e.target.value = '')} className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-700 no-underline">
+                        <Link to="/" onClick={(e) => setSearchKey(e.target.value = '')} className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-100 no-underline">
                             Browse All
                         </Link>
                         {isUser ? (
                             <>
-                                <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700 no-underline">
+                                <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-100 no-underline">
                                     Add lost item.
                                 </Link>
-                                <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700 no-underline">
+                                <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-200 no-underline">
                                     Search with maps.
                                 </Link>
                             </>
@@ -88,13 +88,13 @@ export default function Home() {
             <div className="flex flex-col flex-1 overflow-y-auto">
                 <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
                     <div className="flex items-center px-4">
-                        <button onClick={toggleSidebar} className="text-gray-500 focus:outline-none focus:text-gray-700">
+                        <button onClick={toggleSidebar} className="text-gray-500 focus:outline-none hover:text-gray-900">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
                         <input
-                            className="mx-4 w-full border rounded-md px-4 py-2 focus:border-gray-900 focus:outline-none"
+                            className="mx-4 w-full border rounded-md px-4 py-2 focus:border-gray-900 hover:text-gray-00"
                             type="text"
                             onChange={handleSearch}
                             placeholder="Search your item here."
@@ -111,7 +111,7 @@ export default function Home() {
                                 </Link>
                             </div>
                         ) : (
-                            <Link to="/auth" className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                            <Link to="/auth" className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 no-underline">
                                 Sign In
                             </Link>
                         )}
