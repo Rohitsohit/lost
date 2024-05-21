@@ -6,7 +6,7 @@ import { createChats, findChat } from '../actions/chatActions';
 import { useNavigate } from "react-router-dom";
 
 export default function CardDetails() {
-    
+
     const [Address, setAddress] = useState();
     const history = useNavigate();
     const chatData = {
@@ -17,53 +17,58 @@ export default function CardDetails() {
     const { id } = useParams();
     const items = useSelector((state) => state.items);
     const item = items.find((item) => item._id.toString() === id);
-    
+
     const user = useSelector((state) => state.auth.authData);
-    
+
     const [selectedImage, setSelectedImage] = useState(item.images[0]);
 
     const handleMessage = async (e) => {
-        
+
         e.preventDefault();
-            chatData.senderId = user.result._id;
-            chatData.receiverId = item.userId;
-            
-        let res =  await findChat(chatData.senderId,chatData.receiverId)
-        
-        if(res==null){
-                console.log("inside message")
-                res=await createChats(chatData);
-            }
-            
-            history('/messages', { state: { chat: res } });
+        if(user==null){
+            history('/auth');
+            return;
+        }
+
+        chatData.senderId = user.result._id;
+        chatData.receiverId = item.userId;
+
+        let res = await findChat(chatData.senderId, chatData.receiverId)
+
+        if (res == null) {
+            console.log("inside message")
+            res = await createChats(chatData);
+        }
+
+        history('/messages', { state: { chat: res } });
     };
 
 
     const getAddressFromLatLng = (location) => {
 
 
-const lat = location.latitude
-const lng = location.longitude
+        const lat = location.latitude
+        const lng = location.longitude
 
-    const google = window.google;
-    const geocoder = new google.maps.Geocoder();
-    const latlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+        const google = window.google;
+        const geocoder = new google.maps.Geocoder();
+        const latlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
 
-    geocoder.geocode({ location: latlng }, (results, status) => {
-      if (status === 'OK') {
-        if (results[0]) {
-          setAddress(results[0].formatted_address);
-        } else {
-          console.log('No reßsults found');
-        }
-      } else {
-        console.log('Geocoder failed due to: ' + status);
-      }
-    });
-  };
+        geocoder.geocode({ location: latlng }, (results, status) => {
+            if (status === 'OK') {
+                if (results[0]) {
+                    setAddress(results[0].formatted_address);
+                } else {
+                    console.log('No reßsults found');
+                }
+            } else {
+                console.log('Geocoder failed due to: ' + status);
+            }
+        });
+    };
 
-  getAddressFromLatLng(item.location)
- 
+    getAddressFromLatLng(item.location)
+
     return (
         <div className="font-[sans-serif]">
             <div className="p-6 lg:max-w-7xl max-w-2xl max-lg:mx-auto">
@@ -93,25 +98,25 @@ const lng = location.longitude
                             <h3 className="text-lg font-bold text-gray-800">About the Item</h3>
                             <ul className="space-y-3 list-disc mt-4 pl-4 text-md text-gray-800">
                                 <li>{item.details}</li>
-                                    </ul>
+                            </ul>
                         </div>
                         <div className="mt-8 max-w-md">
-                        <div class="flex items-center">
-    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    </svg>
-    <h3 class="text-lg font-bold text-gray-800">{Address}</h3>
-</div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                </svg>
+                                <h3 class="text-lg font-bold text-gray-800">{Address}</h3>
+                            </div>
 
                             
-                        <div className="flex items-start mt-8" onClick={handleMessage}>
-    <img src="https://readymadeui.com/team-2.webp" className="w-12 h-12 rounded-full border-2 border-white" />
-    <div className="ml-2 flex flex-col justify-center">
-        <h4 className="text-lg font-bold">{item.user}</h4>
-        <div className="flex space-x-1 mt-1">
-            
-        </div>
-    </div>
-</div>
+                            <div className="flex items-start mt-8" onClick={handleMessage}>
+                                <img src="https://readymadeui.com/team-2.webp" className="w-12 h-12 rounded-full border-2 border-white" />
+                                <div className="ml-2 flex flex-col justify-center">
+                                    <h4 className="text-lg font-bold">{item.user}</h4>
+                                    <div className="flex space-x-1 mt-1">
+
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
