@@ -146,7 +146,7 @@ export default function ChatBoxLayout({ chat, loggedInUser, setSendMessage, rece
                 </>
             ) : (
                 <div className="flex justify-center items-center h-screen ">
-                    <p className="text-2xl">
+                    <p className="text-3xl">
                         <span className="text-gray-500 underline">Tap on chat to start the conversation.</span>
                     </p>
                 </div>
