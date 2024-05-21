@@ -2,66 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind CSS Navbar and Sidebar</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar</title>
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-200">
-
-    <!-- Navbar -->
-    <nav class="bg-blue-600 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div>
-                <a href="#" class="text-xl font-bold">Logo</a>
-            </div>
-            <div class="block lg:hidden">
-                <button id="sidebarToggle" class="text-white hover:text-gray-300 focus:outline-none focus:text-gray-300">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="hidden lg:block">
-                <ul class="flex space-x-4">
-                    <li><a href="#" class="hover:text-gray-300">Home</a></li>
-                    <li><a href="#" class="hover:text-gray-300">About</a></li>
-                    <li><a href="#" class="hover:text-gray-300">Services</a></li>
-                    <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+<body>
+  <div class="flex">
     <!-- Sidebar -->
-    <div class="flex">
-        <div id="sidebar" class="bg-gray-800 text-white w-64 min-h-screen transform translate-x-full fixed top-0 right-0 lg:static transition-transform duration-300 ease-in-out z-50">
-            <div class="p-4">
-                <h2 class="text-2xl font-semibold">Sidebar</h2>
-            </div>
-            <ul class="p-2">
-                <li><a href="#" class="block p-2 hover:bg-gray-700">Dashboard</a></li>
-                <li><a href="#" class="block p-2 hover:bg-gray-700">Profile</a></li>
-                <li><a href="#" class="block p-2 hover:bg-gray-700">Settings</a></li>
-                <li><a href="#" class="block p-2 hover:bg-gray-700">Logout</a></li>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <div class="flex-1 p-4">
-            <h1 class="text-2xl font-semibold">Main Content</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in lectus nec ipsum vehicula volutpat a ac nisl. Donec at fringilla eros. Nam quis aliquet metus. Nullam et arcu nec augue euismod suscipit sed non urna.</p>
-        </div>
+    <div id="sidebar" class="fixed inset-y-0 left-0 z-10 w-64 bg-gray-800 text-white p-4 lg:translate-x-0 transform lg:static -translate-x-full lg:transition-none transition-transform duration-300 ease-in-out">
+      <!-- Sidebar content -->
+      <ul>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <!-- Add more sidebar links here -->
+      </ul>
     </div>
 
-    <script>
-        document.getElementById('sidebarToggle').addEventListener('click', function () {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        });
-    </script>
+    <!-- Content area -->
+    <div class="flex-1">
+      <!-- Your main content goes here -->
+      <button id="toggleSidebar" class="block lg:hidden">Toggle Sidebar</button>
+    </div>
+  </div>
 
+  <!-- Include JavaScript to toggle sidebar -->
+  <script>
+    const toggleSidebarBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleSidebarBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (event) => {
+      if (!toggleSidebarBtn.contains(event.target) && !sidebar.contains(event.target)) {
+        sidebar.classList.add('-translate-x-full');
+      }
+    });
+
+    // Open sidebar by default on larger screens
+    if (window.innerWidth >= 1024) {
+      sidebar.classList.remove('-translate-x-full');
+    }
+  </script>
 </body>
 
 </html>

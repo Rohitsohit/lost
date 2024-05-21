@@ -18,13 +18,14 @@ export default function CardDetails() {
     const items = useSelector((state) => state.items);
     const item = items.find((item) => item._id.toString() === id);
     
-    const user = useSelector((state) => state.auth.authData.result);
+    const user = useSelector((state) => state.auth.authData);
     
     const [selectedImage, setSelectedImage] = useState(item.images[0]);
 
     const handleMessage = async (e) => {
+        
         e.preventDefault();
-            chatData.senderId = user._id;
+            chatData.senderId = user.result._id;
             chatData.receiverId = item.userId;
             
         let res =  await findChat(chatData.senderId,chatData.receiverId)
@@ -95,15 +96,23 @@ const lng = location.longitude
                                     </ul>
                         </div>
                         <div className="mt-8 max-w-md">
-                        <h3 class="text-lg font-bold text-gray-800">{Address}</h3>
-                            <div className="flex items-start mt-8" onClick={handleMessage}>
-                                <img src="https://readymadeui.com/team-2.webp" className="w-12 h-12 rounded-full border-2 border-white" />
-                                <div className="ml-2">
-                                    <h4 className="text-lg font-bold">{item.user}</h4>
-                                    <div className="flex space-x-1 mt-1">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="flex items-center">
+    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    </svg>
+    <h3 class="text-lg font-bold text-gray-800">{Address}</h3>
+</div>
+
+                            
+                        <div className="flex items-start mt-8" onClick={handleMessage}>
+    <img src="https://readymadeui.com/team-2.webp" className="w-12 h-12 rounded-full border-2 border-white" />
+    <div className="ml-2 flex flex-col justify-center">
+        <h4 className="text-lg font-bold">{item.user}</h4>
+        <div className="flex space-x-1 mt-1">
+            
+        </div>
+    </div>
+</div>
+
                         </div>
                     </div>
                 </div>
