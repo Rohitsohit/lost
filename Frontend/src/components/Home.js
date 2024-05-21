@@ -53,22 +53,22 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col flex-1 overflow-y-auto">
                     <nav className="flex-1 px-2 py-4 bg-gray-800">
-                        <Link to="/" onClick={(e) => setSearchKey(e.target.value = '')} className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-700">
+                        <Link to="/" onClick={(e) => setSearchKey(e.target.value = '')} className="flex items-center rounded-full px-4 py-2 text-gray-100 hover:bg-gray-700 no-underline">
                             Browse All
                         </Link>
                         {isUser ? (
                             <>
-                                <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                                <Link to="/add-item" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700 no-underline">
                                     Add lost item.
                                 </Link>
-                                <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+                                <Link to="/search-by-map" className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700 no-underline">
                                     Search with maps.
                                 </Link>
                             </>
                         ) : (
                             <></>
                         )}
-                        <h4 className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 bg-gray-800">
+                        <h4 className="flex items-center rounded-full px-4 py-2 mt-2 text-gray-100 bg-gray-800 no-underline">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>

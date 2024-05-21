@@ -34,7 +34,6 @@ export default function AddItem() {
         formData.email = user.email;
         formData.user = user.name;
         formData.userId = user._id;
-        console.log(formData)
         dispatch(addItems(formData, history));
     };
 
@@ -65,7 +64,6 @@ export default function AddItem() {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    console.log(latitude)
                     setFormData({
                         ...formData,
                         location : {
@@ -87,11 +85,11 @@ export default function AddItem() {
 
     return (
         <>
-            <div className="flex items-center justify-center p-8">
-                <div className="mx-auto w-full max-w-[750px] max-h-[750px] bg-white">
-                    <form className="py-4 px-9" onSubmit={onSubmit}>
-                        <div className="mb-3">
-                            <label htmlFor="category" className="mb-3 block text-xl font-medium text-[#07074D]">
+            <div className="flex items-center justify-center p-4 md:p-8">
+                <div className="mx-auto w-full max-w-[750px] bg-white rounded-lg shadow-lg">
+                    <form className="py-4 px-6 md:px-9" onSubmit={onSubmit}>
+                        <div className="mb-4">
+                            <label htmlFor="category" className="block text-lg font-medium text-[#07074D] mb-2">
                                 Add Found Item Here.
                             </label>
                             <input
@@ -100,68 +98,60 @@ export default function AddItem() {
                                 id="category"
                                 placeholder="Category"
                                 onChange={onChange}
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-lg font-medium text-gray-700 focus:outline-none focus:border-indigo-500"
                             />
                         </div>
 
-                        <div className="mb-3">
+                        <div className="mb-4">
                             <input
                                 type="text"
                                 name="details"
                                 id="details"
                                 placeholder="Details"
                                 onChange={onChange}
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-lg font-medium text-gray-700 focus:outline-none focus:border-indigo-500"
                             />
                         </div>
 
-                        <div className="mb-3 flex items-center">
+                        <div className="mb-4 flex items-center">
                             <input
                                 type="text"
                                 name="location"
-                                value={formData.location.latitude+""+formData.location.longitude}
+                                value={`${formData.location.latitude} ${formData.location.longitude}`}
                                 onChange={onChange}
-                                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mr-4 ${isLocationEditable ? '' : 'bg-gray-200'}`}
+                                className={`w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-lg font-medium text-gray-700 focus:outline-none focus:border-indigo-500 mr-2 ${isLocationEditable ? '' : 'bg-gray-200'}`}
                                 readOnly={!isLocationEditable}
                             />
                             <button
                                 type="button"
                                 onClick={getCurrentLocation}
-                                class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 no-underline"
+                                className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 focus:outline-none"
                             >
-                            Current Location
+                                Current Location
                             </button>
-                            
-                     
-
                         </div>
 
-                        <div className="mb-3 pt-2">
-                            <label className=" block text-xl font-semibold text-[#07074D]">
+                        <div className="mb-4">
+                            <label className="block text-lg font-semibold text-[#07074D] mb-2">
                                 Upload Photos
                             </label>
-                            <div className="mb-8">
+                            <div className="mb-2">
                                 <input type="file" onChange={imageHandle} name="file" id="file" className="sr-only" />
                                 <label
                                     htmlFor="file"
-                                    className="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
+                                    className="relative flex items-center justify-center rounded-md border-dashed border-gray-300 p-3 text-lg font-medium text-gray-700 cursor-pointer"
                                 >
-                                    <div>
-                                        <span className="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
-                                            All Browse.
-                                        </span>
-                                    </div>
+                                    Browse
                                 </label>
                             </div>
                         </div>
 
                         <button
-    type="submit"
-    className="hover:shadow-form w-full rounded-md bg-gray-700 py-3 px-8 text-center text-base font-semibold text-white outline-none"
->
-    Submit
-</button>
-
+                            type="submit"
+                            className="w-full rounded-md bg-gray-700 py-3 px-4 text-lg font-semibold text-white hover:bg-gray-600 focus:outline-none"
+                        >
+                            Submit
+                        </button>
                     </form>
 
                     <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">

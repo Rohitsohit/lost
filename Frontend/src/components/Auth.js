@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from '../actions/auth';
+
 const Auth = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
@@ -16,24 +17,20 @@ const Auth = () => {
         e.preventDefault();
 
         if (isLogin) {
-            // Handle login
-           // console.log('Logging in with:', { email, password });
-            dispatch(signin({email,password},history));
+            dispatch(signin({ email, password }, history));
         } else {
-            // Handle signup
-            //console.log('Signing up with:', { email, password, confirmPassword, fullName });
-            dispatch(signup({ email, password, confirmPassword, name },history));
+            dispatch(signup({ email, password, confirmPassword, name }, history));
         }
     };
 
     return (
-        <main className="mx-auto  flex min-h-screen w-full items-center justify-center bg-gray-900 text-white"> {/* Added mt-20 for spacing */}
-            <section className="flex w-[30rem] flex-col space-y-6">
+        <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
+            <section className="flex flex-col space-y-6 w-full max-w-md px-4">
                 <div className="text-center text-4xl font-medium" id="formTitle">
                     {isLogin ? 'Sign In' : 'Sign Up'}
                 </div>
 
-                <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+                <div className="w-full border-b-2 text-lg">
                     <input
                         type="text"
                         placeholder="Email or Username"
@@ -43,7 +40,7 @@ const Auth = () => {
                     />
                 </div>
 
-                <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+                <div className="w-full border-b-2 text-lg">
                     <input
                         type="password"
                         placeholder="Password"
@@ -54,7 +51,7 @@ const Auth = () => {
                 </div>
 
                 {!isLogin && (
-                    <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+                    <div className="w-full border-b-2 text-lg">
                         <input
                             type="password"
                             placeholder="Confirm Password"
@@ -66,7 +63,7 @@ const Auth = () => {
                 )}
 
                 {!isLogin && (
-                    <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+                    <div className="w-full border-b-2 text-lg">
                         <input
                             type="text"
                             placeholder="Full Name"
@@ -78,24 +75,22 @@ const Auth = () => {
                 )}
 
                 <button
-                    className="transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400"
+                    className="rounded-sm bg-indigo-600 py-2 font-bold hover:bg-indigo-400"
                     onClick={handleSubmit}
                 >
                     {isLogin ? 'LOG IN' : 'SIGN UP'}
                 </button>
 
                 {isLogin ? (
-                    <a href="#" className="transform text-center font-semibold text-gray-500 duration-300 hover:text-gray-300">
+                    <a href="#" className="text-center font-semibold text-gray-500 hover:text-gray-300">
                         FORGOT PASSWORD?
                     </a>
-
-
                 ) : (
                     <p className="text-center text-lg">
                         Already have an account?{' '}
                         <a
                             href="#"
-                            className="font-medium text-indigo-500 underline-offset-4 hover:underline"
+                            className="font-medium text-indigo-500 hover:underline"
                             onClick={() => setIsLogin(true)}
                         >
                             Log In
@@ -108,7 +103,7 @@ const Auth = () => {
                         No account?{' '}
                         <a
                             href="#"
-                            className="font-medium text-indigo-500 underline-offset-4 hover:underline"
+                            className="font-medium text-indigo-500 hover:underline"
                             onClick={() => setIsLogin(false)}
                         >
                             Create One
