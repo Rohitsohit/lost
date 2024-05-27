@@ -23,7 +23,7 @@ export default function ChatLayout() {
 
   //user in dependencies to get live chat
   useEffect(() => {
-    socket.current =io('https://lost-chatt-serger.onrender.com')
+    socket.current =io('https://lost-eta.vercel.app')
     socket.current.emit("new-user-add", user._id);
     socket.current.on('get-users',(users)=>{
       setOnlineUsers(users);

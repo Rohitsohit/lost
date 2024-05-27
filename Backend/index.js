@@ -25,7 +25,7 @@ app.use('/chat', ChatRoute)
 app.use('/message', MessageRoute)
 
 app.use("/",(req,res)=>{
-  res.json("server is stated....")
+  res.json("server is started....")
 })
 
 mongoose
