@@ -1,11 +1,8 @@
 import { Server } from "socket.io";
 import 'dotenv/config'
 const PORT = process.env.PORT;
-const io = new Server(PORT, {
-  cors: {
-    origin: "https://lost-frontend.vercel.app",
-  },
-});
+const io = new Server(PORT);
+
 
 console.log("socket.io running on",PORT)  
   let activeUsers = [];
